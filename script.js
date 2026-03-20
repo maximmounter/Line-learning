@@ -1104,36 +1104,41 @@ function renderPractice() {
     const inThisScene = myScenes.has(scene);
 
     if (inThisScene) {
-      // Show full scene with cue lines + my hidden lines
       html += `<div class="scene-header">${scene}</div>`;
 
-      // Find the index of the first line belonging to the selected character in this scene
       const firstMyLineIdx = sceneLines.findIndex(l => l.char === selectedChar);
+      const lastMyLineIdx = sceneLines.map(l => l.char === selectedChar).lastIndexOf(true);
       const startsScene = firstMyLineIdx === 0;
 
-      // Look up the specific cue line text from CUE_LINES map
+      // Look up specific cue line text from CUE_LINES map
       const showKey = currentShow ? Object.keys(SHOWS).find(k => SHOWS[k] === currentShow) : null;
       const charCues = showKey && CUE_LINES[showKey] && CUE_LINES[showKey][selectedChar] ? CUE_LINES[showKey][selectedChar] : {};
       const sceneKey = Object.keys(charCues).find(k => scene.includes(k));
       const cueText = sceneKey !== undefined ? charCues[sceneKey] : undefined;
-      // null means "starts scene" (no cue needed), undefined means "fall back to line before"
       const hasCue = !startsScene && cueText !== null;
 
+      // Find the index of the cue line within sceneLines
+      let cueLineIdx = -1;
+      if (hasCue) {
+        if (cueText) {
+          cueLineIdx = sceneLines.findIndex(l => l.char !== selectedChar && l.text.trim().startsWith(cueText.trim().substring(0, 40)));
+        }
+        if (cueLineIdx === -1) {
+          // Fallback: line immediately before first my-line
+          cueLineIdx = firstMyLineIdx - 1;
+        }
+      }
+
+      // Only show lines from cueLineIdx (or firstMyLineIdx if starts scene) through lastMyLineIdx
+      const startIdx = startsScene ? 0 : (cueLineIdx >= 0 ? cueLineIdx : firstMyLineIdx);
+
       sceneLines.forEach((line, sceneLineIdx) => {
+        // Skip lines before the cue and after my last line
+        if (sceneLineIdx < startIdx || sceneLineIdx > lastMyLineIdx) return;
+
         const i = parsedLines.indexOf(line);
         const col = charColorMap[line.char];
-
-        // Determine if this line is the cue line
-        let isCueLine = false;
-        if (hasCue && line.char !== selectedChar) {
-          if (cueText !== undefined) {
-            // Match against the specific cue text
-            isCueLine = line.text.trim().startsWith(cueText.trim().substring(0, 40));
-          } else {
-            // Fallback: line immediately before first my-line
-            isCueLine = (firstMyLineIdx > 0 && sceneLineIdx === firstMyLineIdx - 1);
-          }
-        }
+        const isCueLine = !startsScene && sceneLineIdx === cueLineIdx && line.char !== selectedChar;
 
         // Insert the banner just before my first line (only if not starting the scene)
         if (!startsScene && sceneLineIdx === firstMyLineIdx) {

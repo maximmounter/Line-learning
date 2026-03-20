@@ -1,0 +1,289 @@
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f5f4f0;
+  color: #1a1a1a;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+/* ── Layout ── */
+#app {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Cards ── */
+.card {
+  background: #fff;
+  border: 1px solid #e2e0db;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Typography helpers ── */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.hint-text {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.muted {
+  font-size: 14px;
+  color: #999;
+}
+
+/* ── Format example box ── */
+.format-example {
+  background: #f5f4f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+/* ── Form elements ── */
+textarea,
+input[type="text"] {
+  width: 100%;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafaf8;
+  color: #1a1a1a;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+textarea:focus,
+input[type="text"]:focus {
+  border-color: #999;
+}
+
+.manual-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.manual-row input {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Buttons ── */
+.btn {
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1a1a1a;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: #f0efe9;
+  border-color: #aaa;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+  margin-top: 4px;
+}
+
+.btn-primary:hover {
+  background: #333;
+  border-color: #333;
+}
+
+/* ── Character pills ── */
+.pill-char {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 99px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: border-color 0.15s, opacity 0.15s;
+  font-weight: 500;
+}
+
+.pill-char:hover {
+  opacity: 0.8;
+}
+
+.pill-char.active {
+  border-color: currentColor;
+}
+
+/* ── Tags ── */
+.tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid #ddd;
+  color: #666;
+  background: #f5f4f0;
+}
+
+/* ── Notices ── */
+#ignored-notice {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+  display: none;
+}
+
+.warning-msg {
+  font-size: 14px;
+  color: #92400e;
+  background: #fef3c7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: none;
+  margin-bottom: 10px;
+}
+
+/* ── Practice area ── */
+#practice-area {
+  display: none;
+}
+
+.practice-header {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+#stats {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+/* ── Progress bar ── */
+.progress-bar-wrap {
+  background: #e8e6e0;
+  border-radius: 99px;
+  height: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.progress-bar-fill {
+  height: 6px;
+  border-radius: 99px;
+  background: #2563eb;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* ── Script lines ── */
+.scene-header {
+  font-size: 13px;
+  color: #aaa;
+  margin: 1.5rem 0 0.75rem;
+  font-style: italic;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+.cue-line {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 3px solid #ddd;
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  background: #f5f4f0;
+}
+
+.my-line-hidden {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 3px solid #2563eb;
+  margin-bottom: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #dbeafe;
+  color: #dbeafe; /* hidden — text same as bg */
+  user-select: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-line-hidden:hover {
+  opacity: 0.9;
+}
+
+.my-line-hidden.revealed {
+  color: #1a1a1a;
+}
+
+.my-line-hidden .reveal-hint {
+  font-size: 12px;
+  color: #2563eb;
+  white-space: nowrap;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.my-line-hidden.revealed .reveal-hint {
+  display: none;
+}
+
+/* ── Character badge ── */
+.char-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-right: 8px;
+  display: inline-block;
+}

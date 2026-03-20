@@ -82,6 +82,7 @@ const SHOWS = {
       { scene: "Scene 1 – The Toronto Bank Office", char: "Jeremiah", text: "I think the time is right. Time to take action. Alright. I'll do it. I'll take the job." },
       { scene: "Scene 1 – The Toronto Bank Office", char: "Miss West", text: "You will?" },
       { scene: "Scene 1 – The Toronto Bank Office", char: "Jeremiah", text: "I will. I'll go to Liverpool, and London—for Grace. I'm ready." },
+      { scene: "Scene 1 – The Toronto Bank Office", char: "Jeremiah", type: "song", title: "I'm Ready", text: "This news really changes everything / A distant dream becoming real / I convinced myself it wasn't happening / And now I'm surprised how good it feels // I've worked so hard for this and now the Fellowship / Sees me as one of their own / The sky is the limit, my future is infinite / My possibilities are endless / I'm ready // I've been seeing life through camera obscura / Now my canvas is wide as the open horizon // I've worked so hard for this and now the Fellowship / Sees me as one of their own / The sky is the limit, my future is infinite / With possibilities // It's freedom and I like it / My spark has been ignited / If I need to leave you, I won't fight it // I'm ready / I am ready / I'm ready" },
 
       // Scene 2
       { scene: "Scene 2 – The Train", char: "Jeremiah", text: "You did well, today, Grace. We did well. To make the train, that is. For a minute there, I thought we ran out of time and it was going to leave without us. Wouldn't that have been awkward?" },
@@ -123,6 +124,7 @@ const SHOWS = {
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 1", text: "Before the boat had hit the water, the whale's tail came up and caught her, all hands to the side, harpooned and fought her, when she dived down low." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 3", text: "No line was cut, no whale was freed, the captain's mind was not of greed, and he belonged to the Whaleman's creed, she took that ship in tow." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 1", text: "Oh, will you watch out!" },
+      { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 1", type: "song", title: "Wellerman", text: "There once was a ship that put to sea / The name of the ship was the Billy O' Tea / The winds blew up, her bow dipped down / Oh blow, my bully boys, blow (huh) // [ALL] Soon may the Wellerman come / To bring us sugar and tea and rum / One day, when the tonguing is done / We'll take our leave and go // [DH3] She'd not been two weeks from shore / When down on her a right whale bore / The captain called all hands and swore / He'd take that whale in tow // [ALL] Soon may the Wellerman come... // [DH1] Before the boat had hit the water / The whale's tail came up and caught her / All hands to the side, harpooned and fought her / When she dived down low // [DH3] No line was cut, no whale was freed / The captain's mind was not of greed / And he belonged to the Whaleman's creed / She took that ship in tow // [ALL] Soon may the Wellerman come..." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 2", text: "What? Me? You're the one who needs to watch out." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 3", text: "Alright, cut it out. Here comes the security officer and the captain's wife." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Mrs. Kendall", text: "What is happening here? This is not becoming behaviour. Mr. Gardner." },
@@ -182,6 +184,7 @@ const SHOWS = {
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Maisie", text: "I just want to be free…like Emmy. It should be me at that shed, not that little ball of fur!" },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Gardner", text: "First a tussle on deck by this lot over here, and now primadonna Maisie. And we haven't even set sail yet. What are we going to do?" },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Mrs. Kendall", text: "Right, everyone. Let's calm down. Listen, people. We have passengers arriving any minute. We all need to be the great crew that you've always been. We need to put an end to this chaos. You've got a great reputation for teamwork with the Canadian Pacific Railway. Working together...that's what you're best at doing. Don't forget that." },
+      { scene: "Scene 3 – The Lower Promenade Deck", char: "Mrs. Kendall", type: "song", title: "We Are One", text: "[MRS. KENDALL] This is where it all leads / The Emp-eress / Is it my destiny to save us all? No / It's my job to disrupt the chaos / Find a purpose for us // We're all rushing around / We're confused and upended / Let's refocus now / Our bond is imperative / Let's bring our collective together / As we fight for our lives // [DH1] Mrs. Kendall, I really needed to hear that / Our community is only as strong as our unity // [DR. GRANT] When I practise medicine / It reveals truth and gives meaning / It's what I'm meant to do // [ALL] The danger's not over yet / When we gain control again / I confess I'll miss the singing / Now let's bring this thing out // [ALL] We know our purpose is / To protect the mission / Our directive / 'Cause we work better / All together / We overcome / Our obstacles as one // [THOMAS] I have to give credit when due / And if I make Captain / It'll be thanks to all of you // [BERNIER] And I don't take for granted / My role to command // [MAISIE] I can't believe how much / I'll miss this crew // [KENDALL] The steamship Empress / Feels just excellent / I'm so proud to / Be your Captain // [ALL] We know our purpose is / To protect the mission... // [MRS. KENDALL] I look around and everyone I see / A pinnacle of guts and resiliency // [DR. GRANT] Desperates are nothing new to us / It takes monumental strength and trust // [ALL] Mrs. Kendall you saved us // [ALL] We know our purpose is / To protect the mission / Our prime directive / Will this work? / Who can say? / We're gonna sing it anyway / Our voices will rise / Through seas and through time / We're the unbreakable / Unshakeable / Improbable / Unstoppable / Sensational / Ovational / We're boldly transportational / Crew of the Empress!" },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Deckhand 1", text: "Mrs. Kendall, I really needed to hear that. Our community is only as strong as our unity." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Dr. Grant", text: "When I practise medicine, it reveals truth and gives meaning. It's what I'm meant to do." },
       { scene: "Scene 3 – The Lower Promenade Deck", char: "Thomas", text: "I have to give credit when due. And if I make Captain, it'll be thanks to all of you." },
@@ -235,6 +238,7 @@ const SHOWS = {
       { scene: "Scene 5 – Grace's Room", char: "Jeremiah", text: "Grace, I need to go look. Will you be alright?" },
       { scene: "Scene 5 – Grace's Room", char: "Grace", text: "I'm fine, Father. Maybe I'll go out on deck and get some air. Look at the land one last time before we leave." },
       { scene: "Scene 5 – Grace's Room", char: "Jeremiah", text: "Very well." },
+      { scene: "Scene 5 – Grace's Room", char: "Grace", type: "song", title: "Boat Song", text: "We packed our bags and said farewell / Untied the knot and raised the sail / We threw our hearts into the sea / Forgot all of our memories // The wind was sweet and smelled of home / The sea was rough and felt unknown / Escaping shores of eternity / Dawn light, twilight, infinity // Can we keep our bearing straight? / Or will we be blown off course? / Are we instruments of fate? / Or do we really have a choice?" },
 
       // Scene 6
       { scene: "Scene 6 – Lower Promenade Deck C", char: "Grace", text: "The train was late arriving here in Quebec City. I didn't tell Father this, but I was secretly hoping we would miss the ship and turn around and head home." },
@@ -308,6 +312,7 @@ const SHOWS = {
       { scene: "Scene 7 – The First Class Dining Room", char: "Maisie", text: "How about \"see ya later?\"" },
       { scene: "Scene 7 – The First Class Dining Room", char: "Gardner", text: "Maisie! That's enough. You will stay here, and start singing. The guests will be arriving any minute. And, I don't want to hear any more talk about you leaving. Is that clear?" },
       { scene: "Scene 7 – The First Class Dining Room", char: "Maisie", text: "Yes! I won't talk about leaving." },
+      { scene: "Scene 7 – The First Class Dining Room", char: "Maisie", type: "song", title: "When I'm Gone (Cup Song)", text: "I got my ticket for the long way 'round / Two bottle of whiskey for the way / And I sure would like some sweet company / And I'm leaving tomorrow, what do you say? // When I'm gone, when I'm gone / You're gonna miss me when I'm gone / You're gonna miss me by my hair / You're gonna miss me everywhere, oh / You're gonna miss me when I'm gone // I got my ticket for the long way 'round / The one with the prettiest of views / It's got mountains, it's got rivers, it's got sights to give you shivers / But it sure would be prettier with you // When I'm gone, when I'm gone / You're gonna miss me when I'm gone / You're gonna miss me by my walk / You're gonna miss me by my talk, oh / You're gonna miss me when I'm gone" },
       { scene: "Scene 7 – The First Class Dining Room", char: "Thomas", text: "I'm sorry, we didn't quite get that." },
       { scene: "Scene 7 – The First Class Dining Room", char: "Mr. Steele", text: "Good evening, folks. I'm Mr. Steele, assistant Chief Steward. I hope you are all well." },
       { scene: "Scene 7 – The First Class Dining Room", char: "Karr", text: "Oh, I had their admiration until you said, \"politician.\"" },
@@ -411,6 +416,7 @@ const SHOWS = {
       { scene: "Scene 7 – The First Class Dining Room", char: "Thomas", text: "Miss. Thomas! What are you doing here?! Isn't there a job you should be doing right now?! Back to your post, immediately! And you! I don't want to hear another word, either spoken or neatly wrapped up in a cute lyrical chorus about you leaving the ship. Do you understand?! Oh, for goodness sake, sing something already!" },
       { scene: "Scene 7 – The First Class Dining Room", char: "Maisie", text: "Yes, sir." },
       { scene: "Scene 7 – The First Class Dining Room", char: "Grace", text: "What a monster! Who was that awful man?" },
+      { scene: "Scene 7 – The First Class Dining Room", char: "Maisie", type: "song", title: "I'll Be Seeing You", text: "I'll be seeing you / In all the old familiar places / That this heart of mine embraces / All day through / In a small cafe / The park across the way / The children's carousel / The chestnut tree / The wishing well // And I'll be seeing you / In every lovely summer's day / In everything that comes what may / I'll always think of you that way / I'll find you in the morning sun / And when the night is new / I'll be looking at the moon / But I'll be seeing you // In a small cafe / The park across the way / The children's carousel / The chestnut tree / The wishing well // And I'll be seeing you / In every lovely summer's day / In everything that comes what may / I'll always think of you that way / I'll find you in the morning sun / And when the night is new / I'll be looking at the moon / But I'll be seeing you" },
       { scene: "Scene 7 – The First Class Dining Room", char: "Peyton", text: "That man–that man is my father." },
       { scene: "Scene 7 – The First Class Dining Room", char: "Grace", text: "I think I'll turn in. I'm not feeling the best." },
       { scene: "Scene 7 – The First Class Dining Room", char: "Jeremiah", text: "Are you sure? Should I accompany you?" },
@@ -450,6 +456,7 @@ const SHOWS = {
       { scene: "Scene 9 – The Music Room", char: "Grace", text: "But, what about your father? Won't he be looking for you? Won't he be upset with you shirking your duties again? I know my father would be." },
       { scene: "Scene 9 – The Music Room", char: "Peyton", text: "You leave my father to me. I have a few things I'm going to say to my father the next time I see him. Sometimes he just makes me so mad. Remember: five minutes." },
       { scene: "Scene 9 – The Music Room / Boat Deck", char: "Peyton", text: "Grace. Good. You came. We have a conversation to finish." },
+      { scene: "Scene 9 – The Music Room", char: "Grace", type: "song", title: "How Would That Feel", text: "Did I hear that right? / Did she just shine a spotlight / On her innermost feelings / Like it's no big deal / Say whatever, whenever you like // You'd presume with all my mastery / To pursue flights of fancy, easy / Who am I kidding, I've never found that part of me / 'Cause I'm designed to color inside the lines // Cool and methodical / Way too responsible / I can't help it / Sometimes I peek through a keyhole and see people happy / I admit // It might be time to change my paradigm / If only I can let go of the wheel / My fear replaced with total faith / I'm fiercely free and really real / Flying blind / How would that feel? // It might be time to change my paradigm / If I can only let go of the wheel / My fear replaced with total faith / I'm fiercely free and really real / Flying blind / How would that feel? // It might be time to change my paradigm / If only I can let go of the wheel / It's nice to dream that I could change my mind / Deep down, I know / I will never let go / My fear is staked / I have no faith / Contented freedom is not real / Flying blind / How would that feel?" },
       { scene: "Scene 9 – The Music Room / Boat Deck", char: "Grace", text: "I'll say." },
       { scene: "Scene 9 – The Music Room / Boat Deck", char: "Peyton", text: "Right. Look, there's a plan to steal your father's silver." },
       { scene: "Scene 9 – The Music Room / Boat Deck", char: "Grace", text: "You mean the bank's silver?" },
@@ -543,6 +550,7 @@ const SHOWS = {
       { scene: "Scene 12 – The Engine Room", char: "Grace", text: "I don't know. Take me back up top. I'll give it some thought." },
       { scene: "Scene 12 – The Engine Room", char: "Crall", text: "Very well. But, don't think too long. Time is running out. I suggest you hurry…and this time, take the stairs. They'll be suspicious if the lift comes back up so soon." },
       { scene: "Scene 12 – The Engine Room", char: "Grace", text: "Really? That was an option? The stairs? You made me get in the lift, like I was a bag of potatoes!" },
+      { scene: "Scene 12 – The Engine Room", char: "Deckhand 1", type: "song", title: "I'm Gonna Be (500 Miles)", text: "[DH1] When I wake up, well, I know I'm gonna be / I'm gonna be the one who wakes up next to you / When I go out, yeah, I know I'm gonna be / I'm gonna be the one who goes along with you // [DH3] If I've money, well, I know I'm gonna be / I'm gonna be the one with money next to you / And if I haver, yeah, I know I'm gonna be / I'm gonna be the one who's haverin' to you // [ALL] But I would walk five hundred miles / And I would walk five hundred more / Just to be the one who walked a thousand / Miles to fall down at your door // [DH1] When I'm workin, yes, I know I'm gonna be / I'm gonna be the one who's workin' hard for you // [ALL] But I would walk five hundred miles / And I would walk five hundred more / Just to be the one who walked a thousand / Miles to fall down at your door // Da-da da da, da-da da da / Da-da dum diddy dum diddy dum diddy da da da" },
       { scene: "Scene 12 – The Engine Room", char: "Eddie", text: "Here. This way." },
 
       // Scene 13
@@ -647,6 +655,7 @@ const SHOWS = {
       { scene: "Scene 16 – Boat Deck", char: "Grace", text: "No. Not this time. My heart is racing too much." },
       { scene: "Scene 16 – Boat Deck", char: "Peyton", text: "What would you say to her if you wrote to her in your diary, like you do?" },
       { scene: "Scene 16 – Boat Deck", char: "Grace", text: "Probably the same things you might say to your Father." },
+      { scene: "Scene 16 – Boat Deck", char: "Grace", type: "song", title: "Place in This World", text: "[GRACE] The wind is moving / But I am standing still / A life of pages / Waiting to be filled / A heart that's hopeful / A head that's full of dreams / But this becoming / Is harder than it seems // Feels like I'm / Looking for a reason / Roaming through the night to find / My place in this world / My place in this world / Not a lot to lean on / I need Your light to help me find / My place in this world / My place in this world // [PEYTON] If there are crewmen / All with their needs / Among the many / Can You still hear me? / Hear me asking / Where do I belong? / Is there a vision / That I can call my own? / Show me // [GRACE/PEYTON] I'm looking for a reason / Roaming through the night to find / My place in this world / My place in this world / Not a lot to lean on / I need Your light to help me find / My place in this world / My place in this world" },
       { scene: "Scene 16 – Boat Deck", char: "Peyton", text: "Peyton sings: If there are crewmen, all with their needs, among the many, can You still hear me? Hear me asking, where do I belong? Is there a vision that I can call my own? Show me." },
       { scene: "Scene 16 – Boat Deck", char: "Peyton", text: "Grace!" },
       { scene: "Scene 16 – Boat Deck", char: "Grace", text: "Yes. I think so." },
@@ -711,6 +720,7 @@ const SHOWS = {
       { scene: "Scene 18 – The Storstad", char: "Mrs. Anderson", text: "We have many injured inside. I'll lead you to them." },
       { scene: "Scene 18 – The Storstad", char: "Dr. Grant", text: "I'll be fine. It's my shoulder. I almost didn't make it out. My cabin porthole became my ceiling. I had to climb up to it. I got stuck in the porthole and a few kind people standing on the side hull pulled me through. Now, I've got to help others." },
       { scene: "Scene 18 – The Storstad", char: "Mrs. Anderson", text: "Sounds terrible. Right this way, Doctor." },
+      { scene: "Scene 18 – The Storstad", char: "Grace", type: "song", title: "Already Home", text: "[GRACE] You say love is what you put into it / You say that I'm losing my will / Don't you know that you're all that I think about? / You make up a half of the whole // You say that it's hard to commit to it / You say that it's hard standing still / Don't you know that I spend all my nights / Counting backwards the days 'til I'm home? // If only New York wasn't so far away / I promise the city won't get in our way / When I'm scared and alone / Just know that I'm already home // [SOFIA] I say that we're right in the heart of it / A love only we understand / I will bend every light in this city / And make sure they're shining on you // If only New York wasn't so far away / I promise the city won't get in our way / When you're scared and alone / Just know that I'm already home // [GRACE] When life takes its own course / Sometimes we just don't get to choose // [GRACE/SOFIA] I'd rather be there next to you / Promise you'll wait for me, wait for me / Wait 'til I'm home / All I have is this feeling inside of me / The only thing I've ever known // If only New York wasn't so far away / I will be there every step of the way / And when you're scared and alone / Just know that I'm already home // Just know that I'm already home" },
 
       // Scene 19
       { scene: "Scene 19 – The Inquiry", char: "Mr. Aspinall", text: "Did you start from Quebec at 4.20 p.m. Montreal time?" },
@@ -741,11 +751,13 @@ const SHOWS = {
       { scene: "Scene 19 – The Inquiry", char: "Kendall", text: "No, they are drowned." },
       { scene: "Scene 19 – The Inquiry", char: "Mr. Aspinall", text: "Both of them have been lost?" },
       { scene: "Scene 19 – The Inquiry", char: "Kendall", text: "Yes." },
+      { scene: "Scene 19 – The Inquiry", char: "Kendall", type: "song", title: "Boat Song (Reprise)", text: "A voice whispers in the gales / Like in the songs and childhood tales / Where krakens raging in the sea / Crack ships into a million pieces // Oh, can we keep our bearing straight? / Or will we be blown off course? / Are we instruments of fate? / Do we really have a choice?" },
       { scene: "Scene 19 – The Inquiry", char: "Mr. Aspinall", text: "That will be all for now." },
 
       // Scene 20
       { scene: "Scene 20 – CPR Office", char: "Peyton", text: "When I wake up, well, I know I'm gonna be, I'm gonna be the one who wakes up next to you…" },
       { scene: "Scene 20 – CPR Office", char: "Grace", text: "Peyton. You're alive!" },
+      { scene: "Scene 20 – CPR Office", char: "Peyton", type: "song", title: "I'm Gonna Be (500 Miles) — Reprise", text: "[PEYTON] When I wake up, well, I know I'm gonna be / I'm gonna be the one who wakes up next to you / And when I go out, yeah, I know I'm gonna be / I'm gonna be the one who goes along with you // And when I come home, yeah, I know I'm gonna be / I'm gonna be the one who's coming home to you / And when I'm dreaming, well, I know I'm gonna dream / I'm gonna dream about the time when I'm with you // But I would walk 500 miles / And I would walk 500 more / Just to be the one who walks a thousand miles / To fall down at your door // [PEYTON/GRACE harmony] But I would walk 500 miles / And I would walk 500 more / Just to be the one who walked a thousand miles / To fall down at your door" },
       { scene: "Scene 20 – CPR Office", char: "Peyton", text: "Grace! I'm so glad you are safe." },
       { scene: "Scene 20 – CPR Office", char: "Grace", text: "I didn't see you at the cemetery service! I couldn't find you on any of the CPR lists of survivors." },
       { scene: "Scene 20 – CPR Office", char: "Peyton", text: "I guess they are still updating those." },
@@ -1149,7 +1161,15 @@ function renderPractice() {
             </div>`;
         }
 
-        if (line.char === selectedChar) {
+        // Song block — always visible, styled differently
+        if (line.type === 'song') {
+          const isMyChar = line.char === selectedChar;
+          html += `
+            <div class="song-block${isMyChar ? ' song-mine' : ''}">
+              <div class="song-label">🎵 ${line.title}</div>
+              <div class="song-lyrics">${line.text.replace(/\/\//g, '<br><br>').replace(/\//g, '<br>')}</div>
+            </div>`;
+        } else if (line.char === selectedChar) {
           const isRevealed = revealed[i];
           html += `
             <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}" onclick="toggleLine(${i})">
@@ -1209,7 +1229,7 @@ function toggleLine(i) {
 // ── Update progress ──
 function updateProgress() {
   const myIdxs = parsedLines
-    .map((l, i) => l.char === selectedChar ? i : -1)
+    .map((l, i) => (l.char === selectedChar && l.type !== 'song') ? i : -1)
     .filter(x => x >= 0);
   const done = myIdxs.filter(i => revealed[i]).length;
   const pct = myIdxs.length ? Math.round(done / myIdxs.length * 100) : 0;
@@ -1219,11 +1239,11 @@ function updateProgress() {
 }
 
 function revealAll() {
-  parsedLines.forEach((l, i) => { if (l.char === selectedChar) revealed[i] = true; });
+  parsedLines.forEach((l, i) => { if (l.char === selectedChar && l.type !== 'song') revealed[i] = true; });
   renderPractice();
 }
 function hideAll() {
-  parsedLines.forEach((l, i) => { if (l.char === selectedChar) revealed[i] = false; });
+  parsedLines.forEach((l, i) => { if (l.char === selectedChar && l.type !== 'song') revealed[i] = false; });
   renderPractice();
 }
 function resetPractice() {

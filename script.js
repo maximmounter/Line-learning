@@ -921,9 +921,26 @@ function renderPractice() {
     if (inThisScene) {
       // Show full scene with cue lines + my hidden lines
       html += `<div class="scene-header">${scene}</div>`;
-      sceneLines.forEach(line => {
+
+      // Find the index of the first line belonging to the selected character in this scene
+      const firstMyLineIdx = sceneLines.findIndex(l => l.char === selectedChar);
+
+      sceneLines.forEach((line, sceneLineIdx) => {
         const i = parsedLines.indexOf(line);
         const col = charColorMap[line.char];
+
+        // The cue line is the last non-my line immediately before my first line
+        const isCueLine = (firstMyLineIdx > 0 && sceneLineIdx === firstMyLineIdx - 1 && line.char !== selectedChar);
+
+        // Insert the banner just before my first line
+        if (sceneLineIdx === firstMyLineIdx) {
+          html += `
+            <div class="cue-banner">
+              <span class="cue-banner-icon">⚡</span>
+              <span class="cue-banner-text">Your cue — you're on!</span>
+            </div>`;
+        }
+
         if (line.char === selectedChar) {
           const isRevealed = revealed[i];
           html += `
@@ -935,7 +952,8 @@ function renderPractice() {
             </div>`;
         } else {
           html += `
-            <div class="cue-line">
+            <div class="cue-line${isCueLine ? ' is-cue' : ''}">
+              ${isCueLine ? '<span class="cue-line-label">cue</span>' : ''}
               <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
             </div>`;
         }

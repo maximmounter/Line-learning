@@ -781,6 +781,191 @@ const SHOWS = {
   }
 };
 
+
+// ── Cue lines map ──
+// Format: { "Show Key": { "Character": { "Scene name fragment": "The line text that is the cue" } } }
+// The cue is the line (spoken by another character) that signals this character to enter.
+// If the character starts the scene, no cue is needed (handled in render logic).
+const CUE_LINES = {
+  "the empress of ireland": {
+    "Mr. Thorne": {
+      "Scene 1": null  // starts scene
+    },
+    "Miss West": {
+      "Scene 1": null  // starts scene
+    },
+    "Samuel": {
+      "Scene 1": "Right. I'll make a note of it, Samuel. We'll keep you here, then."  // last Miss West line before Samuel exits; Samuel is already on but re-enters after Henry
+    },
+    "Henry": {
+      "Scene 1": "Got it, Henry. I'll take care of these right away."
+    },
+    "Edgar": {
+      "Scene 1": "I see...well, I'll make sure to let you keep your sourdough in peace, Henry."
+    },
+    "Carl": {
+      "Scene 1": "Are you sure? It could be helpful to them as a whole. A larger salary. A new country. You just never know."
+    },
+    "Jeremiah": {
+      "Scene 1": "Are you sure? It could be helpful to them as a whole. A larger salary. A new country. You just never know.",
+      "Scene 2": null,
+      "Scene 4": null,
+      "Scene 5": null,
+      "Scene 6": "Oh! The ship horn blasts, startling Grace",
+      "Scene 7": "Shall I send someone to fetch her, sir?",
+      "Scene 20": null
+    },
+    "Grace": {
+      "Scene 2": null,
+      "Scene 5": null,
+      "Scene 6": null,
+      "Scene 7": "Young Steward Thomas. I wanted to thank you first of all for finding my wallet.",
+      "Scene 9": null,
+      "Scene 13": null,
+      "Scene 14": null,
+      "Scene 15": "Let's just say I had a tip from a friendly passenger.",
+      "Scene 16": null,
+      "Scene 18": null,
+      "Scene 20": "I guess they are still updating those."
+    },
+    "Train Passenger": {
+      "Scene 2": "I hear the ship is quite nice. The Empress. She's been sailing since 1906. Bringing many-a-family back and forth. Many newcomers to Canada as well."
+    },
+    "Little Grace": {
+      "Scene 2": "I don't feel strong enough.",
+      "Scene 6": "What do you know? I guess it's that Canadian Staff Band. Looks like they're giving a bit of a concert on the deck over there."
+    },
+    "Bandmaster Hanagan": {
+      "Scene 2": "I don't feel strong enough."
+    },
+    "Deckhand 1": {
+      "Scene 3": null
+    },
+    "Deckhand 2": {
+      "Scene 3": null
+    },
+    "Deckhand 3": {
+      "Scene 3": null
+    },
+    "Deckhand 4": {
+      "Scene 3": null
+    },
+    "Mrs. Kendall": {
+      "Scene 3": "And you embarrassed Captain Kendall in front of his boss."
+    },
+    "Gardner": {
+      "Scene 3": "And you embarrassed Captain Kendall in front of his boss.",
+      "Scene 7": "Maisie?"
+    },
+    "Thomas": {
+      "Scene 3": "And you embarrassed Captain Kendall in front of his boss.",
+      "Scene 4": null,
+      "Scene 7": "I'll handle this, Mrs. Kendall.",
+      "Scene 20": "Right here. I'm pleased to see you both."
+    },
+    "Kendall": {
+      "Scene 3": "And you embarrassed Captain Kendall in front of his boss.",
+      "Scene 16": null,
+      "Scene 19": null
+    },
+    "Bernier": {
+      "Scene 3": "And you embarrassed Captain Kendall in front of his boss."
+    },
+    "Ferguson": {
+      "Scene 3": "In Second and Third Class, we have a large delegation from The Salvation Army, including a group known as The Canadian Staff Band.",
+      "Scene 7": "Looks like things are straightened out with your daughter now.",
+      "Scene 17": null
+    },
+    "Maisie": {
+      "Scene 3": "STOP! Instruments? The band? I hope they'll perform for us at least, to make up for our inconvenience.",
+      "Scene 7": "That's enough. You will stay here, and start singing."
+    },
+    "Trombone Player": {
+      "Scene 3": "STOP! Instruments? The band? I hope they'll perform for us at least, to make up for our inconvenience.",
+      "Scene 7": null
+    },
+    "Trumpet Player": {
+      "Scene 3": "STOP! Instruments? The band? I hope they'll perform for us at least, to make up for our inconvenience.",
+      "Scene 7": null
+    },
+    "Dr. Grant": {
+      "Scene 3": "STOP! Instruments? The band? I hope they'll perform for us at least, to make up for our inconvenience.",
+      "Scene 10": null,
+      "Scene 18": "The main thing is to get you inside right now."
+    },
+    "Mr. Steele": {
+      "Scene 3": "Ms. Thomas. Where is this trunk going?",
+      "Scene 4": "Taking Mr. Hathaway and his daughter to their rooms.",
+      "Scene 6": null,
+      "Scene 7": null,
+      "Scene 14": "I think I'm going to–oh no. It's Mr. Steele. Gotta go.",
+      "Scene 15": null
+    },
+    "Mrs. Paton": {
+      "Scene 3": "Ms. Thomas. Where is this trunk going?",
+      "Scene 7": null
+    },
+    "Peyton": {
+      "Scene 3": "Ms. Thomas. Where is this trunk going?",
+      "Scene 4": null,
+      "Scene 5": null,
+      "Scene 6": "The train was late arriving here in Quebec City.",
+      "Scene 7": "No, I suppose that's quite alright for now.",
+      "Scene 9": null,
+      "Scene 10": null,
+      "Scene 11": null,
+      "Scene 12": null,
+      "Scene 13": null,
+      "Scene 14": null,
+      "Scene 15": null,
+      "Scene 16": null,
+      "Scene 20": null
+    },
+    "Pianist": {
+      "Scene 7": null
+    },
+    "Karr": {
+      "Scene 7": null
+    },
+    "Irving": {
+      "Scene 7": null
+    },
+    "Hackney": {
+      "Scene 7": null
+    },
+    "Mr. Burt": {
+      "Scene 7": null,
+      "Scene 18": "We can talk about that later. Let's get you inside, out of the cold."
+    },
+    "Eddie": {
+      "Scene 9": "Hmm. Didn't your mother say something about time? It's the coin of your life. Be careful how you spend it?",
+      "Scene 11": null,
+      "Scene 12": null,
+      "Scene 14": null
+    },
+    "Crall": {
+      "Scene 6": null,
+      "Scene 12": "What are you talking about?",
+      "Scene 15": null
+    },
+    "Bamford": {
+      "Scene 17": null
+    },
+    "Mrs. Anderson": {
+      "Scene 18": null
+    },
+    "Boat Passenger": {
+      "Scene 18": "There we go. We'll get you inside to warm you up."
+    },
+    "Mr. Aspinall": {
+      "Scene 19": null
+    },
+    "Sofia": {
+      "Scene 18": null
+    }
+  }
+};
+
 // ── State ──
 let parsedLines = [];
 let selectedChar = '';
@@ -924,16 +1109,34 @@ function renderPractice() {
 
       // Find the index of the first line belonging to the selected character in this scene
       const firstMyLineIdx = sceneLines.findIndex(l => l.char === selectedChar);
+      const startsScene = firstMyLineIdx === 0;
+
+      // Look up the specific cue line text from CUE_LINES map
+      const showKey = currentShow ? Object.keys(SHOWS).find(k => SHOWS[k] === currentShow) : null;
+      const charCues = showKey && CUE_LINES[showKey] && CUE_LINES[showKey][selectedChar] ? CUE_LINES[showKey][selectedChar] : {};
+      const sceneKey = Object.keys(charCues).find(k => scene.includes(k));
+      const cueText = sceneKey !== undefined ? charCues[sceneKey] : undefined;
+      // null means "starts scene" (no cue needed), undefined means "fall back to line before"
+      const hasCue = !startsScene && cueText !== null;
 
       sceneLines.forEach((line, sceneLineIdx) => {
         const i = parsedLines.indexOf(line);
         const col = charColorMap[line.char];
 
-        // The cue line is the last non-my line immediately before my first line
-        const isCueLine = (firstMyLineIdx > 0 && sceneLineIdx === firstMyLineIdx - 1 && line.char !== selectedChar);
+        // Determine if this line is the cue line
+        let isCueLine = false;
+        if (hasCue && line.char !== selectedChar) {
+          if (cueText !== undefined) {
+            // Match against the specific cue text
+            isCueLine = line.text.trim().startsWith(cueText.trim().substring(0, 40));
+          } else {
+            // Fallback: line immediately before first my-line
+            isCueLine = (firstMyLineIdx > 0 && sceneLineIdx === firstMyLineIdx - 1);
+          }
+        }
 
-        // Insert the banner just before my first line
-        if (sceneLineIdx === firstMyLineIdx) {
+        // Insert the banner just before my first line (only if not starting the scene)
+        if (!startsScene && sceneLineIdx === firstMyLineIdx) {
           html += `
             <div class="cue-banner">
               <span class="cue-banner-icon">⚡</span>
@@ -953,7 +1156,7 @@ function renderPractice() {
         } else {
           html += `
             <div class="cue-line${isCueLine ? ' is-cue' : ''}">
-              ${isCueLine ? '<span class="cue-line-label">cue</span>' : ''}
+              ${isCueLine ? '<span class="cue-line-label">your cue</span>' : ''}
               <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
             </div>`;
         }

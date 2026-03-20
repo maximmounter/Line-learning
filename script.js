@@ -1144,8 +1144,8 @@ function renderPractice() {
         if (!startsScene && sceneLineIdx === firstMyLineIdx) {
           html += `
             <div class="cue-banner">
-              <span class="cue-banner-icon">⚡</span>
-              <span class="cue-banner-text">Your cue — you're on!</span>
+              
+              <span class="cue-banner-text">You're on!</span>
             </div>`;
         }
 

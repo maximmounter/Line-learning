@@ -1152,15 +1152,6 @@ function renderPractice() {
         const col = charColorMap[line.char];
         const isCueLine = !startsScene && sceneLineIdx === cueLineIdx && line.char !== selectedChar;
 
-        // Insert the banner just before my first line (only if not starting the scene)
-        if (!startsScene && sceneLineIdx === firstMyLineIdx) {
-          html += `
-            <div class="cue-banner">
-              
-              <span class="cue-banner-text">You're on!</span>
-            </div>`;
-        }
-
         // Song block — always visible, styled differently
         if (line.type === 'song') {
           const isMyChar = line.char === selectedChar;

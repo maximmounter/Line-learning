@@ -903,30 +903,67 @@ function renderPractice() {
   const charColorMap = {};
   charList.forEach((c, i) => { charColorMap[c] = getColor(i); });
 
+  // Build ordered list of unique scenes
+  const allScenes = [];
+  parsedLines.forEach(line => {
+    if (!allScenes.includes(line.scene)) allScenes.push(line.scene);
+  });
+
+  // Which scenes does this character appear in?
+  const myScenes = new Set(parsedLines.filter(l => l.char === selectedChar).map(l => l.scene));
+
   let html = '';
-  let lastScene = null;
 
-  parsedLines.forEach((line, i) => {
-    if (line.scene && line.scene !== lastScene) {
-      html += `<div class="scene-header">${line.scene}</div>`;
-      lastScene = line.scene;
-    }
-    const col = charColorMap[line.char];
+  allScenes.forEach((scene, sceneIdx) => {
+    const sceneLines = parsedLines.filter(l => l.scene === scene);
+    const inThisScene = myScenes.has(scene);
 
-    if (line.char === selectedChar) {
-      const isRevealed = revealed[i];
-      html += `
-        <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}" onclick="toggleLine(${i})">
-          <span>
-            <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
-          </span>
-          ${!isRevealed ? '<span class="reveal-hint">tap to reveal</span>' : ''}
-        </div>`;
+    if (inThisScene) {
+      // Show full scene with cue lines + my hidden lines
+      html += `<div class="scene-header">${scene}</div>`;
+      sceneLines.forEach(line => {
+        const i = parsedLines.indexOf(line);
+        const col = charColorMap[line.char];
+        if (line.char === selectedChar) {
+          const isRevealed = revealed[i];
+          html += `
+            <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}" onclick="toggleLine(${i})">
+              <span>
+                <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
+              </span>
+              ${!isRevealed ? '<span class="reveal-hint">tap to reveal</span>' : ''}
+            </div>`;
+        } else {
+          html += `
+            <div class="cue-line">
+              <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
+            </div>`;
+        }
+      });
     } else {
-      html += `
-        <div class="cue-line">
-          <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
-        </div>`;
+      // Check if the character appears in the NEXT scene
+      const nextSceneWithChar = allScenes.slice(sceneIdx + 1).find(s => myScenes.has(s));
+      const isNextScene = nextSceneWithChar === allScenes[sceneIdx + 1];
+
+      if (isNextScene) {
+        html += `
+          <div class="scene-banner backstage">
+            <span class="banner-icon">🎭</span>
+            <div>
+              <div class="banner-title">Get backstage!</div>
+              <div class="banner-sub">${scene} — you're on next</div>
+            </div>
+          </div>`;
+      } else {
+        html += `
+          <div class="scene-banner rest">
+            <span class="banner-icon">💤</span>
+            <div>
+              <div class="banner-title">Rest up</div>
+              <div class="banner-sub">${scene}</div>
+            </div>
+          </div>`;
+      }
     }
   });
 

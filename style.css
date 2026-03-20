@@ -295,3 +295,48 @@ input[type="text"]:focus {
   margin-right: 8px;
   display: inline-block;
 }
+
+/* ── Scene banners (rest / get backstage) ── */
+.scene-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.scene-banner.rest {
+  background: #f1f0ea;
+  border: 1px dashed #ccc;
+}
+
+.scene-banner.backstage {
+  background: #fef3c7;
+  border: 1px dashed #f59e0b;
+}
+
+.banner-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.banner-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.scene-banner.backstage .banner-title {
+  color: #92400e;
+}
+
+.banner-sub {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.scene-banner.backstage .banner-sub {
+  color: #b45309;
+}

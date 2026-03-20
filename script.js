@@ -214,6 +214,8 @@ const SHOWS = {
       // Scene 4
       { scene: "Scene 4 – Lower Promenade Deck A", char: "Jeremiah", text: "It's a beautiful ship. Oh, Here's a steward. Grace, I'll find out where we are going." },
       { scene: "Scene 4 – Lower Promenade Deck A", char: "Peyton", text: "Oh. Very sorry, sir. How clumsy of me. Seems we got our signals crossed. Can I direct you to your room? Your names?" },
+      { scene: "Scene 4 – Lower Promenade Deck A", char: "Jeremiah", text: "No harm done, I suppose, Miss. Uh, steward. Uh…" },
+      { scene: "Scene 4 – Lower Promenade Deck A", char: "Peyton", text: "Steward Peyton Thomas. That's what everyone calls me. Can I direct you to your room? Your names?" },
       { scene: "Scene 4 – Lower Promenade Deck A", char: "Jeremiah", text: "Yes. Jeremiah Hathaway, and this is my daughter, Grace. Grace, let's follow this steward to our rooms." },
       { scene: "Scene 4 – Lower Promenade Deck A", char: "Thomas", text: "Where are you off to?" },
       { scene: "Scene 4 – Lower Promenade Deck A", char: "Peyton", text: "Taking Mr. Hathaway and his daughter to their rooms." },
@@ -984,6 +986,7 @@ let selectedChar = '';
 let revealed = [];
 let allDetectedChars = [];
 let currentShow = null;
+let selectedScenes = []; // scenes chosen in scene picker
 
 // ── Color palette ──
 const CHAR_COLORS = [
@@ -1072,21 +1075,91 @@ function selectChar(char, el) {
 }
 
 // ── Start practice ──
-function startPractice() {
-  if (!selectedChar) {
-    alert('Please select your character first.');
-    return;
-  }
+// ── Go to scene picker ──
+function goScenePicker() {
+  if (!selectedChar) { alert('Please select your character first.'); return; }
   const myLines = parsedLines.filter(l => l.char === selectedChar);
   if (!myLines.length) {
     document.getElementById('no-lines-msg').style.display = 'block';
     return;
   }
   document.getElementById('no-lines-msg').style.display = 'none';
+  document.getElementById('setup-area').style.display = 'none';
+  document.getElementById('scene-picker-area').style.display = 'block';
+  renderScenePicker();
+}
+
+// ── Render scene picker checkboxes ──
+function renderScenePicker() {
+  // Only show scenes this character is in
+  const allScenes = [];
+  parsedLines.forEach(l => { if (!allScenes.includes(l.scene)) allScenes.push(l.scene); });
+  const myScenes = allScenes.filter(s => parsedLines.some(l => l.scene === s && l.char === selectedChar));
+
+  // Default: all selected
+  if (!selectedScenes.length) selectedScenes = [...myScenes];
+
+  const list = document.getElementById('scene-picker-list');
+  list.innerHTML = myScenes.map(s => {
+    const checked = selectedScenes.includes(s);
+    const safeId = 'sc-' + s.replace(/[^a-z0-9]/gi, '-');
+    return \`<label class="scene-check-item">
+      <input type="checkbox" id="\${safeId}" value="\${s}" \${checked ? 'checked' : ''}
+        onchange="toggleSceneSelection(this)">
+      <span>\${s}</span>
+    </label>\`;
+  }).join('');
+}
+
+function toggleSceneSelection(el) {
+  if (el.checked) {
+    if (!selectedScenes.includes(el.value)) selectedScenes.push(el.value);
+  } else {
+    selectedScenes = selectedScenes.filter(s => s !== el.value);
+  }
+}
+
+function selectAllScenes() {
+  const allScenes = [];
+  parsedLines.forEach(l => { if (!allScenes.includes(l.scene)) allScenes.push(l.scene); });
+  selectedScenes = allScenes.filter(s => parsedLines.some(l => l.scene === s && l.char === selectedChar));
+  renderScenePicker();
+}
+
+function deselectAllScenes() {
+  selectedScenes = [];
+  renderScenePicker();
+}
+
+// ── Start practice ──
+function startPractice() {
+  if (!selectedScenes.length) { alert('Please select at least one scene.'); return; }
   revealed = new Array(parsedLines.length).fill(false);
   renderPractice();
-  document.getElementById('setup-area').style.display = 'none';
+  buildSceneMenu();
+  document.getElementById('scene-picker-area').style.display = 'none';
   document.getElementById('practice-area').style.display = 'block';
+}
+
+// ── Scene menu ──
+function buildSceneMenu() {
+  const list = document.getElementById('scene-menu-list');
+  list.innerHTML = selectedScenes.map(s => {
+    return \`<button class="scene-menu-item" onclick="jumpToScene('\${s.replace(/'/g, "\\'")}'); toggleMenu();">\${s}</button>\`;
+  }).join('');
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('scene-menu');
+  const overlay = document.getElementById('scene-menu-overlay');
+  const open = menu.style.display === 'none';
+  menu.style.display = open ? 'flex' : 'none';
+  overlay.style.display = open ? 'block' : 'none';
+}
+
+function jumpToScene(sceneName) {
+  const el = document.getElementById('scene-anchor-' + sceneName.replace(/[^a-z0-9]/gi, '-'));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ── Render practice view ──
@@ -1112,11 +1185,14 @@ function renderPractice() {
   let html = '';
 
   allScenes.forEach((scene, sceneIdx) => {
+    // Skip scenes not selected by user
+    if (!selectedScenes.includes(scene)) return;
     const sceneLines = parsedLines.filter(l => l.scene === scene);
     const inThisScene = myScenes.has(scene);
 
     if (inThisScene) {
-      html += `<div class="scene-header">${scene}</div>`;
+      const anchorId = 'scene-anchor-' + scene.replace(/[^a-z0-9]/gi, '-');
+      html += `<div class="scene-header" id="${anchorId}">${scene}</div>`;
 
       const firstMyLineIdx = sceneLines.findIndex(l => l.char === selectedChar);
       const lastMyLineIdx = sceneLines.map(l => l.char === selectedChar).lastIndexOf(true);
@@ -1145,8 +1221,8 @@ function renderPractice() {
       const startIdx = startsScene ? 0 : (cueLineIdx >= 0 ? cueLineIdx : firstMyLineIdx);
 
       sceneLines.forEach((line, sceneLineIdx) => {
-        // Skip lines before the cue and after my last line
-        if (sceneLineIdx < startIdx || sceneLineIdx > lastMyLineIdx) return;
+        // Skip lines before the cue only — show everything from cue to end of scene
+        if (sceneLineIdx < startIdx) return;
 
         const i = parsedLines.indexOf(line);
         const col = charColorMap[line.char];
@@ -1243,5 +1319,6 @@ function resetPractice() {
 }
 function goSetup() {
   document.getElementById('setup-area').style.display = 'block';
+  document.getElementById('scene-picker-area').style.display = 'none';
   document.getElementById('practice-area').style.display = 'none';
 }

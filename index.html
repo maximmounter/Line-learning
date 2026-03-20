@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Line Memorizer</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -24,11 +24,10 @@
       </div>
     </div>
 
-    <!-- SETUP SCREEN -->
+    <!-- CHARACTER SCREEN -->
     <div id="setup-area" style="display:none;">
       <h1>🎭 Line Memorizer</h1>
       <p id="show-title-display" class="hint-text" style="margin-bottom:1.5rem; font-style:italic;"></p>
-
       <div class="card">
         <div class="section-label">Which character are you?</div>
         <div id="char-picker" class="row">
@@ -42,9 +41,26 @@
           <button class="btn" onclick="addManualChar()">Add</button>
         </div>
       </div>
-
       <div id="no-lines-msg" class="warning-msg">No lines found for this character. Make sure the name matches exactly.</div>
-      <button class="btn btn-primary" onclick="startPractice()">Start rehearsal →</button>
+      <button class="btn btn-primary" onclick="goScenePicker()">Next → Choose scenes</button>
+    </div>
+
+    <!-- SCENE PICKER SCREEN -->
+    <div id="scene-picker-area" style="display:none;">
+      <h1>🎭 Line Memorizer</h1>
+      <p class="hint-text" style="margin-bottom:1rem; font-style:italic;">Which scenes do you want to rehearse?</p>
+      <div class="card">
+        <div class="section-label">Your scenes</div>
+        <div style="margin-bottom:10px;" class="row">
+          <button class="btn" onclick="selectAllScenes()">Select all</button>
+          <button class="btn" onclick="deselectAllScenes()">Deselect all</button>
+        </div>
+        <div id="scene-picker-list"></div>
+      </div>
+      <div class="row" style="gap:10px;">
+        <button class="btn" onclick="goSetup()">← Back</button>
+        <button class="btn btn-primary" onclick="startPractice()">Start rehearsal →</button>
+      </div>
     </div>
 
     <!-- PRACTICE SCREEN -->
@@ -57,13 +73,25 @@
         <div class="row">
           <button class="btn" onclick="revealAll()">Reveal all</button>
           <button class="btn" onclick="hideAll()">Hide all</button>
-          <button class="btn" onclick="goSetup()">← Characters</button>
+          <button class="btn menu-btn" onclick="toggleMenu()">☰ Scenes</button>
+          <button class="btn" onclick="goScenePicker()">← Scenes</button>
         </div>
       </div>
       <div id="stats"></div>
       <div class="progress-bar-wrap">
         <div class="progress-bar-fill" id="progress-fill"></div>
       </div>
+
+      <!-- Floating scene menu -->
+      <div id="scene-menu" class="scene-menu" style="display:none;">
+        <div class="scene-menu-header">
+          <span style="font-weight:600; font-size:14px;">Jump to scene</span>
+          <button class="scene-menu-close" onclick="toggleMenu()">✕</button>
+        </div>
+        <div id="scene-menu-list"></div>
+      </div>
+      <div id="scene-menu-overlay" class="scene-menu-overlay" style="display:none;" onclick="toggleMenu()"></div>
+
       <div id="script-display"></div>
       <div class="row" style="margin-top:2rem;">
         <button class="btn" onclick="revealAll()">Reveal all lines</button>

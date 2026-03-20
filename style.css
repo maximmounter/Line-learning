@@ -416,3 +416,84 @@ input[type="text"]:focus {
   line-height: 1.8;
   font-style: italic;
 }
+
+/* ── Scene picker checkboxes ── */
+.scene-check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 0.5px solid #eee;
+  cursor: pointer;
+  font-size: 14px;
+  color: #1a1a1a;
+}
+.scene-check-item:last-child { border-bottom: none; }
+.scene-check-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Floating scene menu ── */
+.scene-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 100;
+}
+.scene-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 280px;
+  background: #fff;
+  border-left: 1px solid #e2e0db;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.08);
+}
+.scene-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+.scene-menu-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+  padding: 4px 8px;
+}
+.scene-menu-close:hover { color: #1a1a1a; }
+#scene-menu-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 0.5rem 0;
+}
+.scene-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 1.25rem;
+  font-size: 13px;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-family: inherit;
+  border-bottom: 0.5px solid #f0efe9;
+}
+.scene-menu-item:hover { background: #f5f4f0; }
+.scene-menu-item.active-scene { 
+  background: #dbeafe; 
+  color: #1d4ed8; 
+  font-weight: 600;
+}

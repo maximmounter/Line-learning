@@ -22,7 +22,7 @@ body {
 h1 {
   font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
@@ -31,6 +31,30 @@ h1 {
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* ── Login ── */
+#login-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.login-box {
+  background: #fff;
+  border: 1px solid #e2e0db;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+.login-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 /* ── Cards ── */
@@ -64,32 +88,25 @@ h1 {
   color: #999;
 }
 
-/* ── Format example box ── */
-.format-example {
-  background: #f5f4f0;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: #666;
-  line-height: 1.9;
-  margin-bottom: 12px;
-}
-
 /* ── Form elements ── */
 textarea,
 input[type="text"] {
   width: 100%;
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fafaf8;
   color: #1a1a1a;
-  resize: vertical;
   outline: none;
   transition: border-color 0.15s;
+}
+
+textarea {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  resize: vertical;
 }
 
 textarea:focus,
@@ -101,10 +118,6 @@ input[type="text"]:focus {
   display: flex;
   gap: 8px;
   margin-top: 6px;
-}
-
-.manual-row input {
-  font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 /* ── Buttons ── */
@@ -134,7 +147,6 @@ input[type="text"]:focus {
   background: #1a1a1a;
   color: #fff;
   border-color: #1a1a1a;
-  margin-top: 4px;
 }
 
 .btn-primary:hover {
@@ -190,10 +202,6 @@ input[type="text"]:focus {
 }
 
 /* ── Practice area ── */
-#practice-area {
-  display: none;
-}
-
 .practice-header {
   justify-content: space-between;
   margin-bottom: 1rem;
@@ -250,7 +258,7 @@ input[type="text"]:focus {
   font-size: 15px;
   cursor: pointer;
   background: #dbeafe;
-  color: #dbeafe; /* hidden — text same as bg */
+  color: #dbeafe;
   user-select: none;
   transition: color 0.2s;
   display: flex;

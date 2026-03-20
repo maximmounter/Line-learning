@@ -9,35 +9,46 @@
 <body>
   <div id="app">
 
-    <div id="setup-area">
-      <h1>🎭 Line Memorizer</h1>
-
-      <div class="card">
-        <div class="section-label">Paste your script</div>
-        <p class="hint-text">Character name on one line, their dialogue on the next. Any capitalisation works!</p>
-
-        <textarea id="script-input" rows="10" placeholder="Paste your script here..."></textarea>
+    <!-- LOGIN SCREEN -->
+    <div id="login-area">
+      <div class="login-box">
+        <div class="login-title">🎭</div>
+        <h1 style="text-align:center; margin-bottom:0.5rem;">Line Memorizer</h1>
+        <p class="hint-text" style="text-align:center; margin-bottom:1.5rem;">Enter your show name to get started</p>
+        <input type="text" id="show-input" placeholder="Show name..." autocomplete="off"
+          onkeydown="if(event.key==='Enter') handleLogin()" />
+        <div id="login-error" class="warning-msg" style="margin-top:10px; display:none;">
+          Show not recognised. Try again!
+        </div>
+        <button class="btn btn-primary" style="width:100%; margin-top:12px;" onclick="handleLogin()">Enter →</button>
       </div>
+    </div>
+
+    <!-- SETUP SCREEN -->
+    <div id="setup-area" style="display:none;">
+      <h1>🎭 Line Memorizer</h1>
+      <p id="show-title-display" class="hint-text" style="margin-bottom:1.5rem; font-style:italic;"></p>
 
       <div class="card">
         <div class="section-label">Which character are you?</div>
         <div id="char-picker" class="row">
-          <span class="muted">Parse script to see characters</span>
+          <span class="muted">Loading characters...</span>
         </div>
-        <button class="btn" onclick="parseScript()">Detect characters</button>
         <div id="ignored-notice"></div>
         <p class="hint-text" style="margin-top:14px; margin-bottom:4px;">Don't see your name? Type it manually:</p>
         <div class="manual-row">
-          <input type="text" id="manual-char" placeholder="e.g. Jeremiah" />
+          <input type="text" id="manual-char" placeholder="e.g. Jeremiah"
+            onkeydown="if(event.key==='Enter') addManualChar()" />
           <button class="btn" onclick="addManualChar()">Add</button>
         </div>
       </div>
 
-      <div id="no-lines-msg" class="warning-msg">No lines found for this character. Make sure the name in the script matches exactly.</div>
+      <div id="no-lines-msg" class="warning-msg">No lines found for this character. Make sure the name matches exactly.</div>
       <button class="btn btn-primary" onclick="startPractice()">Start rehearsal →</button>
     </div>
 
-    <div id="practice-area">
+    <!-- PRACTICE SCREEN -->
+    <div id="practice-area" style="display:none;">
       <div class="practice-header row">
         <div class="row">
           <span class="tag" id="char-label"></span>
@@ -46,7 +57,7 @@
         <div class="row">
           <button class="btn" onclick="revealAll()">Reveal all</button>
           <button class="btn" onclick="hideAll()">Hide all</button>
-          <button class="btn" onclick="goSetup()">← Edit script</button>
+          <button class="btn" onclick="goSetup()">← Characters</button>
         </div>
       </div>
       <div id="stats"></div>

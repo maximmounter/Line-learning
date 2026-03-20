@@ -795,31 +795,31 @@ const CUE_LINES = {
       "Scene 1": null  // starts scene
     },
     "Samuel": {
-      "Scene 1": "Right. I'll make a note of it, Samuel. We'll keep you here, then."  // last Miss West line before Samuel exits; Samuel is already on but re-enters after Henry
+      "Scene 1": "Understood, Mr. Thorne. I'll get on it immediately."
     },
     "Henry": {
-      "Scene 1": "Got it, Henry. I'll take care of these right away."
+      "Scene 1": "Right. I'll make a note of it, Samuel. We'll keep you here, then."
     },
     "Edgar": {
       "Scene 1": "I see...well, I'll make sure to let you keep your sourdough in peace, Henry."
     },
     "Carl": {
-      "Scene 1": "Are you sure? It could be helpful to them as a whole. A larger salary. A new country. You just never know."
+      "Scene 1": "Thank you, Miss West. The world is full of great causes, but this is one that's close to my heart...well, my upper lip."
     },
     "Jeremiah": {
-      "Scene 1": "Are you sure? It could be helpful to them as a whole. A larger salary. A new country. You just never know.",
+      "Scene 1": "Tough sell. Hey, there's Hathaway.",
       "Scene 2": null,
       "Scene 4": null,
       "Scene 5": null,
-      "Scene 6": "Oh! The ship horn blasts, startling Grace",
-      "Scene 7": "Shall I send someone to fetch her, sir?",
+      "Scene 6": "Yes. I'm…fine.",
+      "Scene 7": null,
       "Scene 20": null
     },
     "Grace": {
       "Scene 2": null,
       "Scene 5": null,
       "Scene 6": null,
-      "Scene 7": "Young Steward Thomas. I wanted to thank you first of all for finding my wallet.",
+      "Scene 7": "I could speak with one of your superiors, if needed. It's just that you're the closest person in age to my Grace, and I think she would be better off with you.",
       "Scene 9": null,
       "Scene 13": null,
       "Scene 14": null,
@@ -851,29 +851,29 @@ const CUE_LINES = {
       "Scene 3": null
     },
     "Mrs. Kendall": {
-      "Scene 3": "And you embarrassed Captain Kendall in front of his boss."
+      "Scene 3": "Alright, cut it out. Here comes the security officer and the captain's wife."
     },
     "Gardner": {
-      "Scene 3": "And you embarrassed Captain Kendall in front of his boss.",
+      "Scene 3": "Alright, cut it out. Here comes the security officer and the captain's wife.",
       "Scene 7": "Maisie?"
     },
     "Thomas": {
-      "Scene 3": "And you embarrassed Captain Kendall in front of his boss.",
+      "Scene 3": "Alright, cut it out. Here comes the security officer and the captain's wife.",
       "Scene 4": null,
-      "Scene 7": "I'll handle this, Mrs. Kendall.",
-      "Scene 20": "Right here. I'm pleased to see you both."
+      "Scene 7": "Maisie! That's enough. You will stay here, and start singing.",
+      "Scene 20": "He's over there, at that ticket agent. We're heading back to England."
     },
     "Kendall": {
-      "Scene 3": "And you embarrassed Captain Kendall in front of his boss.",
+      "Scene 3": "Alright, cut it out. Here comes the security officer and the captain's wife.",
       "Scene 16": null,
       "Scene 19": null
     },
     "Bernier": {
-      "Scene 3": "And you embarrassed Captain Kendall in front of his boss."
+      "Scene 3": "Alright, cut it out. Here comes the security officer and the captain's wife."
     },
     "Ferguson": {
       "Scene 3": "In Second and Third Class, we have a large delegation from The Salvation Army, including a group known as The Canadian Staff Band.",
-      "Scene 7": "Looks like things are straightened out with your daughter now.",
+      "Scene 7": null,
       "Scene 17": null
     },
     "Maisie": {
@@ -894,7 +894,7 @@ const CUE_LINES = {
       "Scene 18": "The main thing is to get you inside right now."
     },
     "Mr. Steele": {
-      "Scene 3": "Ms. Thomas. Where is this trunk going?",
+      "Scene 3": "Mind that trunk! I don't want to damage any of my jewelry!",
       "Scene 4": "Taking Mr. Hathaway and his daughter to their rooms.",
       "Scene 6": null,
       "Scene 7": null,
@@ -902,7 +902,7 @@ const CUE_LINES = {
       "Scene 15": null
     },
     "Mrs. Paton": {
-      "Scene 3": "Ms. Thomas. Where is this trunk going?",
+      "Scene 3": null,
       "Scene 7": null
     },
     "Peyton": {
@@ -910,7 +910,7 @@ const CUE_LINES = {
       "Scene 4": null,
       "Scene 5": null,
       "Scene 6": "The train was late arriving here in Quebec City.",
-      "Scene 7": "No, I suppose that's quite alright for now.",
+      "Scene 7": "I could speak with one of your superiors, if needed. It's just that you're the closest person in age to my Grace, and I think she would be better off with you.",
       "Scene 9": null,
       "Scene 10": null,
       "Scene 11": null,

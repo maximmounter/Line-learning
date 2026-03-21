@@ -1105,11 +1105,11 @@ function renderScenePicker() {
   list.innerHTML = myScenes.map(s => {
     const checked = selectedScenes.includes(s);
     const safeId = 'sc-' + s.replace(/[^a-z0-9]/gi, '-');
-    return `<label class="scene-check-item">
-      <input type="checkbox" id="\${safeId}" value="\${s}" \${checked ? 'checked' : ''}
-        onchange="toggleSceneSelection(this)">
-      <span>\${s}</span>
-    </label>`;
+    return '<label class="scene-check-item">'
+      + '<input type="checkbox" id="' + safeId + '" value="' + s + '" ' + (checked ? 'checked' : '')
+      + ' onchange="toggleSceneSelection(this)">'
+      + '<span>' + s + '</span>'
+      + '</label>';
   }).join('');
 }
 

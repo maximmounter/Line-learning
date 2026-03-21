@@ -523,22 +523,24 @@ input[type="text"]:focus {
 
 /* ── Add show button ── */
 .add-show-btn {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1.5px solid #ccc;
   background: #fff;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1;
   cursor: pointer;
   color: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, border-color 0.15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 50;
+  transition: background 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
 .add-show-btn:active { background: #f0efe9; }

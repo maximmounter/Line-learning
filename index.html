@@ -11,6 +11,7 @@
 
     <!-- LOGIN SCREEN -->
     <div id="login-area">
+      <button class="add-show-btn" onclick="openAddShow()" title="Add a new show">+</button>
       <div class="login-box">
         <div class="login-title">🎭</div>
         <h1 style="text-align:center; margin-bottom:0.5rem;">Line Memorizer</h1>
@@ -21,6 +22,25 @@
           Show not recognised. Try again!
         </div>
         <button class="btn btn-primary" style="width:100%; margin-top:12px;" onclick="handleLogin()">Enter →</button>
+      </div>
+    </div>
+
+    <!-- ADD SHOW OVERLAY -->
+    <div id="add-show-overlay" style="display:none;">
+      <div class="add-show-box">
+        <div class="add-show-header">
+          <span style="font-weight:600; font-size:16px;">Add a new show</span>
+          <button class="scene-menu-close" onclick="closeAddShow()">✕</button>
+        </div>
+        <div class="add-show-body">
+          <p class="hint-text" style="margin-bottom:1rem;">Give your show a login name, then paste the full script below. Format each line as:<br><br><code>CHARACTER NAME<br>Their dialogue here.</code></p>
+          <label class="section-label" style="display:block; margin-bottom:4px;">Login name</label>
+          <input type="text" id="new-show-name" placeholder="e.g. grease, hamilton..." autocomplete="off" style="margin-bottom:1rem;" />
+          <label class="section-label" style="display:block; margin-bottom:4px;">Paste script</label>
+          <textarea id="new-show-script" rows="12" placeholder="CHARACTER NAME&#10;Their line here.&#10;OTHER CHARACTER&#10;Their line here."></textarea>
+          <div id="add-show-error" class="warning-msg" style="margin-top:10px;">Please fill in both fields.</div>
+          <button class="btn btn-primary" style="width:100%; margin-top:12px;" onclick="saveNewShow()">Save show →</button>
+        </div>
       </div>
     </div>
 

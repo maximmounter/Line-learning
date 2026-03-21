@@ -34,12 +34,6 @@
           <span class="muted">Loading characters...</span>
         </div>
         <div id="ignored-notice"></div>
-        <p class="hint-text" style="margin-top:14px; margin-bottom:4px;">Don't see your name? Type it manually:</p>
-        <div class="manual-row">
-          <input type="text" id="manual-char" placeholder="e.g. Jeremiah"
-            onkeydown="if(event.key==='Enter') addManualChar()" />
-          <button class="btn" onclick="addManualChar()">Add</button>
-        </div>
       </div>
       <div id="no-lines-msg" class="warning-msg">No lines found for this character. Make sure the name matches exactly.</div>
       <button class="btn btn-primary" onclick="goScenePicker()">Next → Choose scenes</button>

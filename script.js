@@ -1103,11 +1103,11 @@ function renderScenePicker() {
   list.innerHTML = myScenes.map(s => {
     const checked = selectedScenes.includes(s);
     const safeId = 'sc-' + s.replace(/[^a-z0-9]/gi, '-');
-    return \`<label class="scene-check-item">
+    return `<label class="scene-check-item">
       <input type="checkbox" id="\${safeId}" value="\${s}" \${checked ? 'checked' : ''}
         onchange="toggleSceneSelection(this)">
       <span>\${s}</span>
-    </label>\`;
+    </label>`;
   }).join('');
 }
 
@@ -1145,7 +1145,8 @@ function startPractice() {
 function buildSceneMenu() {
   const list = document.getElementById('scene-menu-list');
   list.innerHTML = selectedScenes.map(s => {
-    return \`<button class="scene-menu-item" onclick="jumpToScene('\${s.replace(/'/g, "\\'")}'); toggleMenu();">\${s}</button>\`;
+    const safe = s.replace(/'/g, "\'");
+    return '<button class="scene-menu-item" onclick="jumpToScene(\'' + safe + '\'); toggleMenu();">' + s + '</button>';
   }).join('');
 }
 

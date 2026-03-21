@@ -47,6 +47,7 @@ h1 {
 }
 
 .login-box {
+  position: relative;
   background: #fff;
   border: 1px solid #e2e0db;
   border-radius: 16px;
@@ -518,4 +519,73 @@ input[type="text"]:focus {
     font-size: 10px;
     padding: 1px 5px;
   }
+}
+
+/* ── Add show button ── */
+.add-show-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #ccc;
+  background: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.add-show-btn:active { background: #f0efe9; }
+
+
+
+/* ── Add show overlay ── */
+#add-show-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.add-show-box {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+}
+
+.add-show-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.add-show-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: #f5f4f0;
+  padding: 2px 5px;
+  border-radius: 4px;
 }

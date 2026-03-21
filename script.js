@@ -1004,6 +1004,98 @@ function getColor(index) {
   return CHAR_COLORS[index % CHAR_COLORS.length];
 }
 
+
+// ── Add show ──
+function openAddShow() {
+  document.getElementById('add-show-overlay').style.display = 'flex';
+  document.getElementById('new-show-name').focus();
+}
+
+function closeAddShow() {
+  document.getElementById('add-show-overlay').style.display = 'none';
+  document.getElementById('add-show-error').style.display = 'none';
+  document.getElementById('new-show-name').value = '';
+  document.getElementById('new-show-script').value = '';
+}
+
+function saveNewShow() {
+  const nameEl = document.getElementById('new-show-name');
+  const scriptEl = document.getElementById('new-show-script');
+  const errorEl = document.getElementById('add-show-error');
+
+  const showName = nameEl.value.trim().toLowerCase();
+  const rawScript = scriptEl.value.trim();
+
+  if (!showName || !rawScript) {
+    errorEl.style.display = 'block';
+    errorEl.textContent = 'Please fill in both fields.';
+    return;
+  }
+
+  // Parse the pasted script
+  const lines = rawScript.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  const parsedNew = [];
+  let currentScene = '';
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const sceneMatch = line.match(/^\[(.+)\]$/);
+    if (sceneMatch) { currentScene = sceneMatch[1]; i++; continue; }
+    if (STAGE_WORDS.has(line.toLowerCase())) { i++; continue; }
+    if (/^(act|scene)\s/i.test(line)) { i++; continue; }
+    const nextLine = lines[i + 1];
+    if (isCharName(line) && nextLine && !isCharName(nextLine) && !nextLine.startsWith('[')) {
+      parsedNew.push({ scene: currentScene || 'Scene 1', char: line.trim(), text: nextLine.trim() });
+      i += 2;
+      continue;
+    }
+    i++;
+  }
+
+  if (!parsedNew.length) {
+    errorEl.style.display = 'block';
+    errorEl.textContent = "Couldn't find any lines. Check the format: character name on one line, dialogue on the next.";
+    return;
+  }
+
+  // Add to SHOWS dynamically and save to localStorage
+  const newShow = {
+    title: nameEl.value.trim(),
+    lines: parsedNew
+  };
+  SHOWS[showName] = newShow;
+  saveShowToStorage(showName, newShow);
+
+  errorEl.style.display = 'none';
+  closeAddShow();
+
+  // Auto-fill the login input with the new show name
+  document.getElementById('show-input').value = nameEl.value.trim();
+}
+
+// ── Load saved shows from localStorage into SHOWS on startup ──
+function loadSavedShows() {
+  try {
+    const saved = localStorage.getItem('customShows');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      Object.keys(parsed).forEach(key => {
+        SHOWS[key] = parsed[key];
+      });
+    }
+  } catch(e) {}
+}
+
+// ── Save a custom show to localStorage ──
+function saveShowToStorage(key, show) {
+  try {
+    const saved = JSON.parse(localStorage.getItem('customShows') || '{}');
+    saved[key] = show;
+    localStorage.setItem('customShows', JSON.stringify(saved));
+  } catch(e) {}
+}
+
 // ── Login ──
 function handleLogin() {
   const input = document.getElementById('show-input').value.trim().toLowerCase();
@@ -1325,3 +1417,6 @@ function goSetup() {
   document.getElementById('scene-picker-area').style.display = 'none';
   document.getElementById('practice-area').style.display = 'none';
 }
+
+// Load any saved shows when the page starts
+loadSavedShows();

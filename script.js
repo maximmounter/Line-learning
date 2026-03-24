@@ -1349,19 +1349,12 @@ function saveFixAdd(mode) {
     const newLine = { scene, char, text };
     insertLineAfter(newLine, afterIdx);
   }
-  // If the new line's character is the selected character and the scene
-  // isn't already in selectedScenes, add it
-  if (mode === 'walkon' || mode === 'line') {
-    const newScene = mode === 'walkon'
-      ? document.getElementById('fix-walkon-scene').value
-      : document.getElementById('fix-add-scene').value;
-    const newChar = mode === 'walkon'
-      ? document.getElementById('fix-walkon-char').value.trim()
-      : document.getElementById('fix-add-char').value.trim();
-    if (newChar === selectedChar && !selectedScenes.includes(newScene)) {
-      selectedScenes.push(newScene);
+  // Resync selectedScenes — add any new scenes the selected character now appears in
+  parsedLines.forEach(l => {
+    if (l.char === selectedChar && !selectedScenes.includes(l.scene)) {
+      selectedScenes.push(l.scene);
     }
-  }
+  });
 
   saveCurrentShowEdits();
   closeFixPanel();

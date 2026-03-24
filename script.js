@@ -1112,6 +1112,30 @@ function updateAddTypeLabels() {
   }
 }
 
+function populateAfterLine(selectId) {
+  // Find which scene select triggered this
+  const sceneSelectId = selectId === 'fix-add-after' ? 'fix-add-scene' : 'fix-walkon-scene';
+  const scene = document.getElementById(sceneSelectId).value;
+  const select = document.getElementById(selectId);
+
+  const sceneLines = parsedLines
+    .map((l, i) => ({ l, i }))
+    .filter(({ l }) => l.scene === scene);
+
+  select.innerHTML = '<option value="-1">— At the very start of scene —</option>' +
+    sceneLines.map(({ l, i }) =>
+      '<option value="' + i + '">' +
+        (l.type === 'walkon' ? '[Walk-on] ' : l.type === 'song' ? '[Song] ' : '') +
+        l.char + ': ' + l.text.substring(0, 55) + (l.text.length > 55 ? '…' : '') +
+      '</option>'
+    ).join('');
+
+  // Default to last line in scene
+  if (sceneLines.length > 0) {
+    select.value = sceneLines[sceneLines.length - 1].i;
+  }
+}
+
 function openFixPanel() {
   // Populate scene dropdowns
   const allScenes = [];
@@ -1119,6 +1143,9 @@ function openFixPanel() {
   const sceneOptions = allScenes.map(s => '<option value="' + s + '">' + s + '</option>').join('');
   document.getElementById('fix-add-scene').innerHTML = sceneOptions;
   document.getElementById('fix-walkon-scene').innerHTML = sceneOptions;
+  // Populate after-line dropdowns for the default scene
+  populateAfterLine('fix-add-after');
+  populateAfterLine('fix-walkon-after');
 
   // Reset state
   ['fix-search-line','fix-search-walkon'].forEach(id => {
@@ -1266,24 +1293,25 @@ function deleteFixLine() {
 
 function saveFixAdd(mode) {
   if (mode === 'walkon') {
-    const scene = document.getElementById('fix-walkon-scene').value;
     const char = document.getElementById('fix-walkon-char').value.trim();
     const text = document.getElementById('fix-walkon-text').value.trim();
+    const afterIdx = parseInt(document.getElementById('fix-walkon-after').value);
     const errEl = document.getElementById('fix-walkon-error');
     if (!char || !text) { errEl.style.display = 'block'; return; }
     errEl.style.display = 'none';
+    const scene = document.getElementById('fix-walkon-scene').value;
     const newLine = { scene, char, text, type: 'walkon' };
-    insertLineIntoScene(newLine, scene, 'end');
+    insertLineAfter(newLine, afterIdx);
   } else {
-    const scene = document.getElementById('fix-add-scene').value;
     const char = document.getElementById('fix-add-char').value.trim();
     const text = document.getElementById('fix-add-text').value.trim();
-    const position = document.getElementById('fix-add-position').value;
+    const afterIdx = parseInt(document.getElementById('fix-add-after').value);
     const errEl = document.getElementById('fix-add-error');
     if (!char || !text) { errEl.style.display = 'block'; return; }
     errEl.style.display = 'none';
+    const scene = document.getElementById('fix-add-scene').value;
     const newLine = { scene, char, text };
-    insertLineIntoScene(newLine, scene, position);
+    insertLineAfter(newLine, afterIdx);
   }
   saveCurrentShowEdits();
   closeFixPanel();
@@ -1291,15 +1319,17 @@ function saveFixAdd(mode) {
   buildSceneMenu();
 }
 
-function insertLineIntoScene(newLine, scene, position) {
-  const sceneIndices = parsedLines.map((l, i) => l.scene === scene ? i : -1).filter(i => i >= 0);
-  if (sceneIndices.length === 0 || position === 'end') {
-    const insertAt = sceneIndices.length ? sceneIndices[sceneIndices.length - 1] + 1 : parsedLines.length;
+function insertLineAfter(newLine, afterIdx) {
+  // afterIdx === -1 means insert at very start of scene
+  if (afterIdx === -1) {
+    const sceneIndices = parsedLines.map((l, i) => l.scene === newLine.scene ? i : -1).filter(i => i >= 0);
+    const insertAt = sceneIndices.length ? sceneIndices[0] : parsedLines.length;
     parsedLines.splice(insertAt, 0, newLine);
     revealed.splice(insertAt, 0, false);
   } else {
-    parsedLines.splice(sceneIndices[0], 0, newLine);
-    revealed.splice(sceneIndices[0], 0, false);
+    // Insert after the selected line
+    parsedLines.splice(afterIdx + 1, 0, newLine);
+    revealed.splice(afterIdx + 1, 0, false);
   }
 }
 

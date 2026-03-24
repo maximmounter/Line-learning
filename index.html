@@ -98,16 +98,13 @@
           <div id="fix-panel-add-line">
             <p class="hint-text" style="margin-bottom:12px;">Add a new spoken line to a scene.</p>
             <div class="section-label" style="margin-bottom:4px;">Scene</div>
-            <select id="fix-add-scene" style="margin-bottom:10px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
+            <select id="fix-add-scene" onchange="populateAfterLine('fix-add-after')" style="margin-bottom:10px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
             <div class="section-label" style="margin-bottom:4px;">Character</div>
             <input type="text" id="fix-add-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
             <div class="section-label" style="margin-bottom:4px;">Line text</div>
             <textarea id="fix-add-text" rows="4" placeholder="The dialogue..." style="margin-bottom:10px;"></textarea>
-            <div class="section-label" style="margin-bottom:4px;">Insert position</div>
-            <select id="fix-add-position" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;">
-              <option value="end">At end of scene</option>
-              <option value="start">At start of scene</option>
-            </select>
+            <div class="section-label" style="margin-bottom:4px;">Insert after</div>
+            <select id="fix-add-after" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
             <div id="fix-add-error" class="warning-msg">Please fill in all fields.</div>
             <button class="btn btn-primary" style="width:100%;" onclick="saveFixAdd('line')">Add line</button>
           </div>
@@ -132,11 +129,13 @@
           <div id="fix-panel-add-walkon" style="display:none;">
             <p class="hint-text" style="margin-bottom:12px;">Add a walk-on for a character who is present but has no spoken lines.</p>
             <div class="section-label" style="margin-bottom:4px;">Scene</div>
-            <select id="fix-walkon-scene" style="margin-bottom:10px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
+            <select id="fix-walkon-scene" onchange="populateAfterLine('fix-walkon-after')" style="margin-bottom:10px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
             <div class="section-label" style="margin-bottom:4px;">Character</div>
             <input type="text" id="fix-walkon-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
             <div class="section-label" style="margin-bottom:4px;">Stage direction</div>
-            <textarea id="fix-walkon-text" rows="3" placeholder="e.g. Enters and hangs coat on rack (no lines)" style="margin-bottom:14px;"></textarea>
+            <textarea id="fix-walkon-text" rows="3" placeholder="e.g. Enters and hangs coat on rack (no lines)" style="margin-bottom:10px;"></textarea>
+            <div class="section-label" style="margin-bottom:4px;">Insert after</div>
+            <select id="fix-walkon-after" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
             <div id="fix-walkon-error" class="warning-msg">Please fill in all fields.</div>
             <button class="btn btn-primary" style="width:100%;" onclick="saveFixAdd('walkon')">Add walk-on</button>
           </div>

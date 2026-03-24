@@ -1356,6 +1356,10 @@ function saveFixAdd(mode) {
     }
   });
 
+  console.log('selectedChar:', selectedChar);
+  console.log('selectedScenes after add:', selectedScenes);
+  console.log('parsedLines count:', parsedLines.length);
+
   saveCurrentShowEdits();
   closeFixPanel();
   renderPractice();

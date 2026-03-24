@@ -622,3 +622,69 @@ code {
   color: #166534;
   font-style: italic;
 }
+
+/* ── Fix panel tabs ── */
+.fix-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.fix-tab {
+  flex: 1;
+  padding: 9px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f5f4f0;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fix-tab.active {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+/* ── Fix search results ── */
+.fix-result {
+  padding: 10px 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: background 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fix-result:active,
+.fix-result.selected {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.fix-result-char {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.fix-result-scene {
+  font-size: 11px;
+  color: #aaa;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.fix-result-text {
+  font-size: 14px;
+  color: #1a1a1a;
+  line-height: 1.4;
+}

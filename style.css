@@ -712,3 +712,39 @@ code {
   background: #ede9fe;
   color: #6d28d9;
 }
+
+/* ── Line autocomplete suggestions ── */
+.line-suggestions {
+  margin-bottom: 4px;
+}
+
+.line-suggestion {
+  padding: 9px 12px;
+  border: 1px solid #e2e0db;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background: #fafaf8;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.1s;
+}
+
+.line-suggestion:active {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.line-suggestion-char {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.line-suggestion-text {
+  font-size: 13px;
+  color: #1a1a1a;
+  line-height: 1.4;
+}

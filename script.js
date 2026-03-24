@@ -1112,6 +1112,42 @@ function updateAddTypeLabels() {
   }
 }
 
+
+function lineAutocomplete(textareaId, sceneSelectId, suggestionsId) {
+  const query = document.getElementById(textareaId).value.trim().toLowerCase();
+  const scene = document.getElementById(sceneSelectId).value;
+  const box = document.getElementById(suggestionsId);
+
+  if (query.length < 2) { box.innerHTML = ''; return; }
+
+  const matches = parsedLines
+    .filter(l => l.scene === scene && l.text.toLowerCase().includes(query))
+    .slice(0, 6);
+
+  if (!matches.length) { box.innerHTML = ''; return; }
+
+  box.innerHTML = matches.map(l => {
+    const safeText = l.text.replace(/"/g, '&quot;');
+    return '<div class="line-suggestion"' +
+      ' data-textarea="' + textareaId + '"' +
+      ' data-suggestions="' + suggestionsId + '"' +
+      ' data-text="' + safeText + '"' +
+      ' onclick="fillSuggestion(this)">' +
+      '<span class="line-suggestion-char">' + l.char + '</span>' +
+      '<span class="line-suggestion-text">' + l.text.substring(0, 90) + (l.text.length > 90 ? '\u2026' : '') + '</span>' +
+    '</div>';
+  }).join('');
+}
+
+function fillSuggestion(el) {
+  const textareaId = el.dataset.textarea;
+  const suggestionsId = el.dataset.suggestions;
+  const text = el.dataset.text;
+  document.getElementById(textareaId).value = text;
+  document.getElementById(suggestionsId).innerHTML = '';
+  document.getElementById(textareaId).focus();
+}
+
 function populateAfterLine(selectId) {
   // Find which scene select triggered this
   const sceneSelectId = selectId === 'fix-add-after' ? 'fix-add-scene' : 'fix-walkon-scene';

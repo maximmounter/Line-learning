@@ -102,8 +102,9 @@
             <div class="section-label" style="margin-bottom:4px;">Character</div>
             <input type="text" id="fix-add-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
             <div class="section-label" style="margin-bottom:4px;">Line text</div>
-            <textarea id="fix-add-text" rows="4" placeholder="The dialogue..." style="margin-bottom:10px;"></textarea>
-            <div class="section-label" style="margin-bottom:4px;">Insert after</div>
+            <textarea id="fix-add-text" rows="4" placeholder="The dialogue..." oninput="lineAutocomplete('fix-add-text','fix-add-scene','fix-add-suggestions')" style="margin-bottom:4px;"></textarea>
+            <div id="fix-add-suggestions" class="line-suggestions"></div>
+            <div class="section-label" style="margin-bottom:4px; margin-top:8px;">Insert after</div>
             <select id="fix-add-after" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
             <div id="fix-add-error" class="warning-msg">Please fill in all fields.</div>
             <button class="btn btn-primary" style="width:100%;" onclick="saveFixAdd('line')">Add line</button>
@@ -133,8 +134,9 @@
             <div class="section-label" style="margin-bottom:4px;">Character</div>
             <input type="text" id="fix-walkon-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
             <div class="section-label" style="margin-bottom:4px;">Stage direction</div>
-            <textarea id="fix-walkon-text" rows="3" placeholder="e.g. Enters and hangs coat on rack (no lines)" style="margin-bottom:10px;"></textarea>
-            <div class="section-label" style="margin-bottom:4px;">Insert after</div>
+            <textarea id="fix-walkon-text" rows="3" placeholder="e.g. Enters and hangs coat on rack (no lines)" oninput="lineAutocomplete('fix-walkon-text','fix-walkon-scene','fix-walkon-suggestions')" style="margin-bottom:4px;"></textarea>
+            <div id="fix-walkon-suggestions" class="line-suggestions"></div>
+            <div class="section-label" style="margin-bottom:4px; margin-top:8px;">Insert after</div>
             <select id="fix-walkon-after" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
             <div id="fix-walkon-error" class="warning-msg">Please fill in all fields.</div>
             <button class="btn btn-primary" style="width:100%;" onclick="saveFixAdd('walkon')">Add walk-on</button>

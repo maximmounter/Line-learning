@@ -1166,13 +1166,15 @@ function fixSearch() {
     return;
   }
 
-  results.innerHTML = matches.map(({ l, i }) =>
-    '<div class="fix-result" onclick="selectFixLine(' + i + ')">' +
-      '<span class="fix-result-char">' + l.char + '</span>' +
+  results.innerHTML = matches.map(({ l, i }) => {
+    const typeBadge = l.type === 'walkon' ? '<span class="fix-type-badge walkon">walk-on</span>' :
+                      l.type === 'song'   ? '<span class="fix-type-badge song">song</span>' : '';
+    return '<div class="fix-result" onclick="selectFixLine(' + i + ')">' +
+      '<span class="fix-result-char">' + l.char + typeBadge + '</span>' +
       '<span class="fix-result-scene">' + l.scene + '</span>' +
       '<span class="fix-result-text">' + l.text.substring(0, 80) + (l.text.length > 80 ? '…' : '') + '</span>' +
-    '</div>'
-  ).join('');
+    '</div>';
+  }).join('');
 }
 
 function selectFixLine(i) {

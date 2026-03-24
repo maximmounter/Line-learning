@@ -691,3 +691,25 @@ code {
   color: #1a1a1a;
   line-height: 1.4;
 }
+
+/* ── Fix result type badges ── */
+.fix-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.fix-type-badge.walkon {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.fix-type-badge.song {
+  background: #ede9fe;
+  color: #6d28d9;
+}

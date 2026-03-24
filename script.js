@@ -1092,6 +1092,189 @@ function saveNewShow() {
   document.getElementById('show-input').value = nameEl.value.trim();
 }
 
+
+// ── Fix Panel ──
+let fixEditIndex = -1;
+
+function updateAddTypeLabels() {
+  const type = document.getElementById('fix-add-type').value;
+  const textLabel = document.getElementById('fix-add-text-label');
+  const textArea = document.getElementById('fix-add-text');
+  if (type === 'walkon') {
+    textLabel.textContent = 'Stage direction';
+    textArea.placeholder = 'e.g. Enters and hangs coat on rack (no lines)';
+  } else if (type === 'song') {
+    textLabel.textContent = 'Lyrics';
+    textArea.placeholder = 'Paste the song lyrics here...';
+  } else {
+    textLabel.textContent = 'Line text';
+    textArea.placeholder = 'The dialogue...';
+  }
+}
+
+function openFixPanel() {
+  // Populate scene dropdown for Add tab
+  const sceneSelect = document.getElementById('fix-add-scene');
+  const allScenes = [];
+  parsedLines.forEach(l => { if (!allScenes.includes(l.scene)) allScenes.push(l.scene); });
+  sceneSelect.innerHTML = allScenes.map(s => '<option value="' + s + '">' + s + '</option>').join('');
+
+  // Reset state
+  document.getElementById('fix-search').value = '';
+  document.getElementById('fix-search-results').innerHTML = '';
+  document.getElementById('fix-edit-form').style.display = 'none';
+  document.getElementById('fix-edit-error').style.display = 'none';
+  document.getElementById('fix-add-error').style.display = 'none';
+  switchFixTab('edit');
+  fixEditIndex = -1;
+
+  document.getElementById('fix-overlay').style.display = 'flex';
+}
+
+function closeFixPanel() {
+  document.getElementById('fix-overlay').style.display = 'none';
+}
+
+function switchFixTab(tab) {
+  document.getElementById('fix-panel-edit').style.display = tab === 'edit' ? 'block' : 'none';
+  document.getElementById('fix-panel-add').style.display = tab === 'add' ? 'block' : 'none';
+  document.getElementById('tab-edit').classList.toggle('active', tab === 'edit');
+  document.getElementById('tab-add').classList.toggle('active', tab === 'add');
+}
+
+function fixSearch() {
+  const query = document.getElementById('fix-search').value.trim().toLowerCase();
+  const results = document.getElementById('fix-search-results');
+  document.getElementById('fix-edit-form').style.display = 'none';
+  fixEditIndex = -1;
+
+  if (query.length < 2) { results.innerHTML = ''; return; }
+
+  const matches = parsedLines
+    .map((l, i) => ({ l, i }))
+    .filter(({ l }) =>
+      l.text.toLowerCase().includes(query) ||
+      l.char.toLowerCase().includes(query)
+    )
+    .slice(0, 8);
+
+  if (!matches.length) {
+    results.innerHTML = '<p class="hint-text">No lines found.</p>';
+    return;
+  }
+
+  results.innerHTML = matches.map(({ l, i }) =>
+    '<div class="fix-result" onclick="selectFixLine(' + i + ')">' +
+      '<span class="fix-result-char">' + l.char + '</span>' +
+      '<span class="fix-result-scene">' + l.scene + '</span>' +
+      '<span class="fix-result-text">' + l.text.substring(0, 80) + (l.text.length > 80 ? '…' : '') + '</span>' +
+    '</div>'
+  ).join('');
+}
+
+function selectFixLine(i) {
+  fixEditIndex = i;
+  const line = parsedLines[i];
+  document.getElementById('fix-edit-char').value = line.char;
+  document.getElementById('fix-edit-text').value = line.text;
+  document.getElementById('fix-edit-type').value = line.type || '';
+  document.getElementById('fix-edit-form').style.display = 'block';
+  document.getElementById('fix-edit-error').style.display = 'none';
+
+  // Highlight selected result
+  document.querySelectorAll('.fix-result').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === [...document.querySelectorAll('.fix-result')].indexOf(
+      document.querySelector('.fix-result:nth-child(' + (document.querySelectorAll('.fix-result').length) + ')')
+    ));
+  });
+  document.querySelectorAll('.fix-result').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.fix-result')[
+    [...document.querySelectorAll('.fix-result')].findIndex(el =>
+      el.querySelector('.fix-result-text').textContent.startsWith(line.text.substring(0, 30))
+    )
+  ]?.classList.add('selected');
+}
+
+function saveFixEdit() {
+  if (fixEditIndex < 0) return;
+  const char = document.getElementById('fix-edit-char').value.trim();
+  const text = document.getElementById('fix-edit-text').value.trim();
+  const type = document.getElementById('fix-edit-type').value;
+  const errEl = document.getElementById('fix-edit-error');
+
+  if (!char || !text) { errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+
+  parsedLines[fixEditIndex].char = char;
+  parsedLines[fixEditIndex].text = text;
+  if (type) parsedLines[fixEditIndex].type = type;
+  else delete parsedLines[fixEditIndex].type;
+
+  saveCurrentShowEdits();
+  closeFixPanel();
+  renderPractice();
+  buildSceneMenu();
+}
+
+function deleteFixLine() {
+  if (fixEditIndex < 0) return;
+  if (!confirm('Delete this line?')) return;
+  parsedLines.splice(fixEditIndex, 1);
+  revealed.splice(fixEditIndex, 1);
+  saveCurrentShowEdits();
+  closeFixPanel();
+  renderPractice();
+  buildSceneMenu();
+}
+
+function saveFixAdd() {
+  const scene = document.getElementById('fix-add-scene').value;
+  const char = document.getElementById('fix-add-char').value.trim();
+  const text = document.getElementById('fix-add-text').value.trim();
+  const type = document.getElementById('fix-add-type').value;
+  const position = document.getElementById('fix-add-position').value;
+  const errEl = document.getElementById('fix-add-error');
+
+  if (!char || !text) { errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+
+  const newLine = { scene, char, text };
+  if (type) newLine.type = type;
+
+  // Find insert position
+  const sceneIndices = parsedLines
+    .map((l, i) => l.scene === scene ? i : -1)
+    .filter(i => i >= 0);
+
+  if (sceneIndices.length === 0 || position === 'end') {
+    const insertAt = sceneIndices.length ? sceneIndices[sceneIndices.length - 1] + 1 : parsedLines.length;
+    parsedLines.splice(insertAt, 0, newLine);
+    revealed.splice(insertAt, 0, false);
+  } else {
+    parsedLines.splice(sceneIndices[0], 0, newLine);
+    revealed.splice(sceneIndices[0], 0, false);
+  }
+
+  saveCurrentShowEdits();
+  closeFixPanel();
+  renderPractice();
+  buildSceneMenu();
+}
+
+// Save edits back to localStorage if it's a custom show
+function saveCurrentShowEdits() {
+  if (!currentShow) return;
+  currentShow.lines = parsedLines;
+  try {
+    const saved = JSON.parse(localStorage.getItem('customShows') || '{}');
+    const key = Object.keys(SHOWS).find(k => SHOWS[k] === currentShow);
+    if (key && saved[key]) {
+      saved[key] = currentShow;
+      localStorage.setItem('customShows', JSON.stringify(saved));
+    }
+  } catch(e) {}
+}
+
 // ── Load saved shows from localStorage into SHOWS on startup ──
 function loadSavedShows() {
   try {

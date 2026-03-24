@@ -1113,11 +1113,12 @@ function updateAddTypeLabels() {
 }
 
 function openFixPanel() {
-  // Populate scene dropdown for Add tab
-  const sceneSelect = document.getElementById('fix-add-scene');
+  // Populate scene dropdowns
   const allScenes = [];
   parsedLines.forEach(l => { if (!allScenes.includes(l.scene)) allScenes.push(l.scene); });
-  sceneSelect.innerHTML = allScenes.map(s => '<option value="' + s + '">' + s + '</option>').join('');
+  const sceneOptions = allScenes.map(s => '<option value="' + s + '">' + s + '</option>').join('');
+  document.getElementById('fix-add-scene').innerHTML = sceneOptions;
+  document.getElementById('fix-walkon-scene').innerHTML = sceneOptions;
 
   // Reset state
   document.getElementById('fix-search').value = '';
@@ -1138,8 +1139,10 @@ function closeFixPanel() {
 function switchFixTab(tab) {
   document.getElementById('fix-panel-edit').style.display = tab === 'edit' ? 'block' : 'none';
   document.getElementById('fix-panel-add').style.display = tab === 'add' ? 'block' : 'none';
+  document.getElementById('fix-panel-walkon').style.display = tab === 'walkon' ? 'block' : 'none';
   document.getElementById('tab-edit').classList.toggle('active', tab === 'edit');
   document.getElementById('tab-add').classList.toggle('active', tab === 'add');
+  document.getElementById('tab-walkon').classList.toggle('active', tab === 'walkon');
 }
 
 function fixSearch() {
@@ -1227,25 +1230,35 @@ function deleteFixLine() {
   buildSceneMenu();
 }
 
-function saveFixAdd() {
-  const scene = document.getElementById('fix-add-scene').value;
-  const char = document.getElementById('fix-add-char').value.trim();
-  const text = document.getElementById('fix-add-text').value.trim();
-  const type = document.getElementById('fix-add-type').value;
-  const position = document.getElementById('fix-add-position').value;
-  const errEl = document.getElementById('fix-add-error');
+function saveFixAdd(mode) {
+  if (mode === 'walkon') {
+    const scene = document.getElementById('fix-walkon-scene').value;
+    const char = document.getElementById('fix-walkon-char').value.trim();
+    const text = document.getElementById('fix-walkon-text').value.trim();
+    const errEl = document.getElementById('fix-walkon-error');
+    if (!char || !text) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+    const newLine = { scene, char, text, type: 'walkon' };
+    insertLineIntoScene(newLine, scene, 'end');
+  } else {
+    const scene = document.getElementById('fix-add-scene').value;
+    const char = document.getElementById('fix-add-char').value.trim();
+    const text = document.getElementById('fix-add-text').value.trim();
+    const position = document.getElementById('fix-add-position').value;
+    const errEl = document.getElementById('fix-add-error');
+    if (!char || !text) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+    const newLine = { scene, char, text };
+    insertLineIntoScene(newLine, scene, position);
+  }
+  saveCurrentShowEdits();
+  closeFixPanel();
+  renderPractice();
+  buildSceneMenu();
+}
 
-  if (!char || !text) { errEl.style.display = 'block'; return; }
-  errEl.style.display = 'none';
-
-  const newLine = { scene, char, text };
-  if (type) newLine.type = type;
-
-  // Find insert position
-  const sceneIndices = parsedLines
-    .map((l, i) => l.scene === scene ? i : -1)
-    .filter(i => i >= 0);
-
+function insertLineIntoScene(newLine, scene, position) {
+  const sceneIndices = parsedLines.map((l, i) => l.scene === scene ? i : -1).filter(i => i >= 0);
   if (sceneIndices.length === 0 || position === 'end') {
     const insertAt = sceneIndices.length ? sceneIndices[sceneIndices.length - 1] + 1 : parsedLines.length;
     parsedLines.splice(insertAt, 0, newLine);
@@ -1254,11 +1267,6 @@ function saveFixAdd() {
     parsedLines.splice(sceneIndices[0], 0, newLine);
     revealed.splice(sceneIndices[0], 0, false);
   }
-
-  saveCurrentShowEdits();
-  closeFixPanel();
-  renderPractice();
-  buildSceneMenu();
 }
 
 // Save edits back to localStorage if it's a custom show

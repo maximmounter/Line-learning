@@ -836,12 +836,15 @@ const CUE_LINES = {
       "Scene 2": null,
       "Scene 4": null,
       "Scene 5": null,
+      "Scene 12": null,
+      "Scene 13": null,
       "Scene 6": "Yes. I'm…fine.",
       "Scene 7": null,
       "Scene 20": null
     },
     "Grace": {
       "Scene 2": null,
+      "Scene 4": null,
       "Scene 5": null,
       "Scene 6": null,
       "Scene 7": "I could speak with one of your superiors, if needed. It's just that you're the closest person in age to my Grace, and I think she would be better off with you.",
@@ -950,15 +953,19 @@ const CUE_LINES = {
       "Scene 7": null
     },
     "Karr": {
+      "Scene 3": null,
       "Scene 7": null
     },
     "Irving": {
+      "Scene 6": null,
       "Scene 7": null
     },
     "Hackney": {
+      "Scene 6": null,
       "Scene 7": null
     },
     "Mr. Burt": {
+      "Scene 3": null,
       "Scene 7": null,
       "Scene 18": "We can talk about that later. Let's get you inside, out of the cold."
     },

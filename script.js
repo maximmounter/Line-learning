@@ -1004,6 +1004,7 @@ let selectedChar = '';
 let revealed = [];
 let allDetectedChars = [];
 let currentShow = null;
+let currentShowKey = null;
 let selectedScenes = []; // scenes chosen in scene picker
 
 // ── Color palette ──
@@ -1382,15 +1383,12 @@ function insertLineAfter(newLine, afterIdx) {
 
 // Save edits back to localStorage for ANY show including hardcoded ones
 function saveCurrentShowEdits() {
-  if (!currentShow) return;
-  currentShow.lines = parsedLines;
+  if (!currentShow || !currentShowKey) return;
   try {
-    const key = Object.keys(SHOWS).find(k => SHOWS[k] === currentShow);
-    if (!key) return;
     const saved = JSON.parse(localStorage.getItem('showEdits') || '{}');
-    saved[key] = { lines: JSON.parse(JSON.stringify(parsedLines)) };
+    saved[currentShowKey] = { lines: JSON.parse(JSON.stringify(parsedLines)) };
     localStorage.setItem('showEdits', JSON.stringify(saved));
-    console.log('Saved', parsedLines.length, 'lines for', key);
+    console.log('Saved', parsedLines.length, 'lines for', currentShowKey);
   } catch(e) { console.error('Save error:', e); }
 }
 
@@ -1433,9 +1431,11 @@ function handleLogin() {
   const errorEl = document.getElementById('login-error');
 
   // Try exact match first, then try with "the " prefix added
-  const match = SHOWS[input] || SHOWS['the ' + input];
+  const matchKey = SHOWS[input] ? input : (SHOWS['the ' + input] ? 'the ' + input : null);
+  const match = matchKey ? SHOWS[matchKey] : null;
   if (match) {
     currentShow = match;
+    currentShowKey = matchKey;
     errorEl.style.display = 'none';
     loadShow(currentShow);
   } else {
@@ -1444,7 +1444,7 @@ function handleLogin() {
 }
 
 function loadShow(show) {
-  parsedLines = show.lines;
+  parsedLines = JSON.parse(JSON.stringify(show.lines));
   document.getElementById('show-title-display').textContent = show.title;
 
   const chars = [...new Set(parsedLines.map(l => l.char))];

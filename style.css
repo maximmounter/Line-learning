@@ -207,6 +207,12 @@ input[type="text"]:focus {
   justify-content: space-between;
   margin-bottom: 0.75rem;
   gap: 6px;
+  position: sticky;
+  top: 0;
+  background: #f5f4f0;
+  z-index: 50;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e0db;
 }
 
 .practice-header .row {

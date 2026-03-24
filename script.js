@@ -1121,12 +1121,23 @@ function openFixPanel() {
   document.getElementById('fix-walkon-scene').innerHTML = sceneOptions;
 
   // Reset state
-  document.getElementById('fix-search').value = '';
-  document.getElementById('fix-search-results').innerHTML = '';
-  document.getElementById('fix-edit-form').style.display = 'none';
-  document.getElementById('fix-edit-error').style.display = 'none';
-  document.getElementById('fix-add-error').style.display = 'none';
-  switchFixTab('edit');
+  ['fix-search-line','fix-search-walkon'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  ['fix-search-line-results','fix-search-walkon-results'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = '';
+  });
+  ['fix-edit-line-form','fix-edit-walkon-form'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  ['fix-edit-error','fix-add-error','fix-walkon-error','fix-edit-walkon-error'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  switchFixTab('add-line');
   fixEditIndex = -1;
 
   document.getElementById('fix-overlay').style.display = 'flex';
@@ -1137,44 +1148,49 @@ function closeFixPanel() {
 }
 
 function switchFixTab(tab) {
-  document.getElementById('fix-panel-edit').style.display = tab === 'edit' ? 'block' : 'none';
-  document.getElementById('fix-panel-add').style.display = tab === 'add' ? 'block' : 'none';
-  document.getElementById('fix-panel-walkon').style.display = tab === 'walkon' ? 'block' : 'none';
-  document.getElementById('tab-edit').classList.toggle('active', tab === 'edit');
-  document.getElementById('tab-add').classList.toggle('active', tab === 'add');
-  document.getElementById('tab-walkon').classList.toggle('active', tab === 'walkon');
+  ['add-line','edit-line','add-walkon','edit-walkon'].forEach(t => {
+    document.getElementById('fix-panel-' + t).style.display = tab === t ? 'block' : 'none';
+    document.getElementById('tab-' + t).classList.toggle('active', tab === t);
+  });
 }
 
-function fixSearch() {
-  const query = document.getElementById('fix-search').value.trim().toLowerCase();
-  const results = document.getElementById('fix-search-results');
-  document.getElementById('fix-edit-form').style.display = 'none';
+function fixSearch(mode) {
+  const isWalkon = mode === 'walkon';
+  const inputId = isWalkon ? 'fix-search-walkon' : 'fix-search-line';
+  const resultsId = isWalkon ? 'fix-search-walkon-results' : 'fix-search-line-results';
+  const formId = isWalkon ? 'fix-edit-walkon-form' : 'fix-edit-line-form';
+
+  const query = document.getElementById(inputId).value.trim().toLowerCase();
+  const results = document.getElementById(resultsId);
+  document.getElementById(formId).style.display = 'none';
   fixEditIndex = -1;
 
   if (query.length < 2) { results.innerHTML = ''; return; }
 
   const matches = parsedLines
     .map((l, i) => ({ l, i }))
-    .filter(({ l }) =>
-      l.text.toLowerCase().includes(query) ||
-      l.char.toLowerCase().includes(query)
-    )
+    .filter(({ l }) => {
+      const matchesType = isWalkon ? l.type === 'walkon' : l.type !== 'walkon';
+      return matchesType && (
+        l.text.toLowerCase().includes(query) ||
+        l.char.toLowerCase().includes(query)
+      );
+    })
     .slice(0, 8);
 
   if (!matches.length) {
-    results.innerHTML = '<p class="hint-text">No lines found.</p>';
+    results.innerHTML = '<p class="hint-text">No ' + (isWalkon ? 'walk-ons' : 'lines') + ' found.</p>';
     return;
   }
 
-  results.innerHTML = matches.map(({ l, i }) => {
-    const typeBadge = l.type === 'walkon' ? '<span class="fix-type-badge walkon">walk-on</span>' :
-                      l.type === 'song'   ? '<span class="fix-type-badge song">song</span>' : '';
-    return '<div class="fix-result" onclick="selectFixLine(' + i + ')">' +
-      '<span class="fix-result-char">' + l.char + typeBadge + '</span>' +
+  const clickFn = isWalkon ? 'selectFixWalkon' : 'selectFixLine';
+  results.innerHTML = matches.map(({ l, i }) =>
+    '<div class="fix-result" onclick="' + clickFn + '(' + i + ')">' +
+      '<span class="fix-result-char">' + l.char + '</span>' +
       '<span class="fix-result-scene">' + l.scene + '</span>' +
       '<span class="fix-result-text">' + l.text.substring(0, 80) + (l.text.length > 80 ? '…' : '') + '</span>' +
-    '</div>';
-  }).join('');
+    '</div>'
+  ).join('');
 }
 
 function selectFixLine(i) {
@@ -1182,22 +1198,22 @@ function selectFixLine(i) {
   const line = parsedLines[i];
   document.getElementById('fix-edit-char').value = line.char;
   document.getElementById('fix-edit-text').value = line.text;
-  document.getElementById('fix-edit-type').value = line.type || '';
-  document.getElementById('fix-edit-form').style.display = 'block';
+  document.getElementById('fix-edit-line-form').style.display = 'block';
   document.getElementById('fix-edit-error').style.display = 'none';
+  // Highlight selected
+  document.querySelectorAll('#fix-search-line-results .fix-result').forEach(el => el.classList.remove('selected'));
+  event.currentTarget?.classList.add('selected');
+}
 
-  // Highlight selected result
-  document.querySelectorAll('.fix-result').forEach((el, idx) => {
-    el.classList.toggle('selected', idx === [...document.querySelectorAll('.fix-result')].indexOf(
-      document.querySelector('.fix-result:nth-child(' + (document.querySelectorAll('.fix-result').length) + ')')
-    ));
-  });
-  document.querySelectorAll('.fix-result').forEach(el => el.classList.remove('selected'));
-  document.querySelectorAll('.fix-result')[
-    [...document.querySelectorAll('.fix-result')].findIndex(el =>
-      el.querySelector('.fix-result-text').textContent.startsWith(line.text.substring(0, 30))
-    )
-  ]?.classList.add('selected');
+function selectFixWalkon(i) {
+  fixEditIndex = i;
+  const line = parsedLines[i];
+  document.getElementById('fix-edit-walkon-char').value = line.char;
+  document.getElementById('fix-edit-walkon-text').value = line.text;
+  document.getElementById('fix-edit-walkon-form').style.display = 'block';
+  document.getElementById('fix-edit-walkon-error').style.display = 'none';
+  document.querySelectorAll('#fix-search-walkon-results .fix-result').forEach(el => el.classList.remove('selected'));
+  event.currentTarget?.classList.add('selected');
 }
 
 function saveFixEdit() {
@@ -1215,6 +1231,22 @@ function saveFixEdit() {
   if (type) parsedLines[fixEditIndex].type = type;
   else delete parsedLines[fixEditIndex].type;
 
+  saveCurrentShowEdits();
+  closeFixPanel();
+  renderPractice();
+  buildSceneMenu();
+}
+
+function saveFixEditWalkon() {
+  if (fixEditIndex < 0) return;
+  const char = document.getElementById('fix-edit-walkon-char').value.trim();
+  const text = document.getElementById('fix-edit-walkon-text').value.trim();
+  const errEl = document.getElementById('fix-edit-walkon-error');
+  if (!char || !text) { errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+  parsedLines[fixEditIndex].char = char;
+  parsedLines[fixEditIndex].text = text;
+  parsedLines[fixEditIndex].type = 'walkon';
   saveCurrentShowEdits();
   closeFixPanel();
   renderPractice();

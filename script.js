@@ -1380,31 +1380,42 @@ function insertLineAfter(newLine, afterIdx) {
   }
 }
 
-// Save edits back to localStorage if it's a custom show
+// Save edits back to localStorage for ANY show including hardcoded ones
 function saveCurrentShowEdits() {
   if (!currentShow) return;
   currentShow.lines = parsedLines;
   try {
-    const saved = JSON.parse(localStorage.getItem('customShows') || '{}');
     const key = Object.keys(SHOWS).find(k => SHOWS[k] === currentShow);
-    if (key && saved[key]) {
-      saved[key] = currentShow;
-      localStorage.setItem('customShows', JSON.stringify(saved));
-    }
-  } catch(e) {}
+    if (!key) return;
+    const saved = JSON.parse(localStorage.getItem('showEdits') || '{}');
+    saved[key] = { lines: JSON.parse(JSON.stringify(parsedLines)) };
+    localStorage.setItem('showEdits', JSON.stringify(saved));
+    console.log('Saved', parsedLines.length, 'lines for', key);
+  } catch(e) { console.error('Save error:', e); }
 }
 
 // ── Load saved shows from localStorage into SHOWS on startup ──
 function loadSavedShows() {
   try {
-    const saved = localStorage.getItem('customShows');
-    if (saved) {
-      const parsed = JSON.parse(saved);
+    // Load custom shows added by user
+    const customShows = localStorage.getItem('customShows');
+    if (customShows) {
+      const parsed = JSON.parse(customShows);
       Object.keys(parsed).forEach(key => {
         SHOWS[key] = parsed[key];
       });
     }
-  } catch(e) {}
+    // Load edits made to any show (including hardcoded ones)
+    const edits = localStorage.getItem('showEdits');
+    if (edits) {
+      const parsed = JSON.parse(edits);
+      Object.keys(parsed).forEach(key => {
+        if (SHOWS[key] && parsed[key].lines) {
+          SHOWS[key].lines = parsed[key].lines;
+        }
+      });
+    }
+  } catch(e) { console.error('Load error:', e); }
 }
 
 // ── Save a custom show to localStorage ──

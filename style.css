@@ -591,3 +591,34 @@ code {
   padding: 2px 5px;
   border-radius: 4px;
 }
+
+/* ── Walk-on blocks ── */
+.walkon-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid #22c55e;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+
+.walkon-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #15803d;
+  background: #dcfce7;
+  border-radius: 4px;
+  padding: 2px 7px;
+  flex-shrink: 0;
+}
+
+.walkon-text {
+  font-size: 14px;
+  color: #166534;
+  font-style: italic;
+}

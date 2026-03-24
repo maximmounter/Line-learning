@@ -200,6 +200,8 @@ const SHOWS = {
       { scene: "Scene 3 - The Lower Promenade Deck", char: "Dr. Grant", text: "It's a mouse." },
       { scene: "Scene 3 - The Lower Promenade Deck", char: "Maisie", text: "Eww! Disgusting." },
       { scene: "Scene 3 - The Lower Promenade Deck", char: "Kendall", text: "Yes, well everyone. Let's get back to work. Passengers are boarding." },
+      { scene: "Scene 3 - The Lower Promenade Deck", char: "Mr. Burt", type: "walkon", text: "Crosses stage with trunk (no lines)" },
+      { scene: "Scene 3 - The Lower Promenade Deck", char: "Karr", type: "walkon", text: "Crosses stage with trunk (no lines)" },
       { scene: "Scene 3 - The Lower Promenade Deck", char: "Mrs. Paton", text: "Mind that trunk! I don't want to damage any of my jewelry!" },
       { scene: "Scene 3 - The Lower Promenade Deck", char: "Mr. Steele", text: "Ms. Thomas. Where is this trunk going?" },
       { scene: "Scene 3 - The Lower Promenade Deck", char: "Peyton", text: "Mrs Paton's room, sir." },
@@ -216,6 +218,7 @@ const SHOWS = {
       { scene: "Scene 4 - Lower Promenade Deck A", char: "Peyton", text: "Oh. Very sorry, sir. How clumsy of me. Seems we got our signals crossed." },
       { scene: "Scene 4 - Lower Promenade Deck A", char: "Jeremiah", text: "No harm done, I suppose, Miss. Uh, steward. Uh…" },
       { scene: "Scene 4 - Lower Promenade Deck A", char: "Peyton", text: "Steward Peyton Thomas. That's what everyone calls me. Can I direct you to your room? Your names?" },
+      { scene: "Scene 4 - Lower Promenade Deck A", char: "Grace", type: "walkon", text: "Follows father to meet Peyton (no lines yet)" },
       { scene: "Scene 4 - Lower Promenade Deck A", char: "Jeremiah", text: "Yes. Jeremiah Hathaway, and this is my daughter, Grace. Grace, let's follow this steward to our rooms." },
       { scene: "Scene 4 - Lower Promenade Deck A", char: "Thomas", text: "Where are you off to?" },
       { scene: "Scene 4 - Lower Promenade Deck A", char: "Peyton", text: "Taking Mr. Hathaway and his daughter to their rooms." },
@@ -275,6 +278,8 @@ const SHOWS = {
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "What did he do?" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "He gave them what they wanted. He built another four pillars. Only these ones didn't quite reach the ceiling. They only gave the appearance of support. In fact, Mother says they still stand today and act as a bit of a tourist sight." },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "Huh." },
+      { scene: "Scene 6 - Lower Promenade Deck C", char: "Irving", type: "walkon", text: "Shares a loud laugh with Hackney across the stage (no lines)" },
+      { scene: "Scene 6 - Lower Promenade Deck C", char: "Hackney", type: "walkon", text: "Shares a loud laugh with Irving across the stage (no lines)" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "So, you see, Grace. That's my role here. And my father's too. Catering to the whims of those who don't know any better than we. So, Grace, what about you? What is your disguise? Who are you trying to please?" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "Music. It sounds like, \"O Canada.\"" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "What do you know? I guess it's that Canadian Staff Band. Looks like they're giving a bit of a concert on the deck over there." },
@@ -556,8 +561,10 @@ const SHOWS = {
       { scene: "Scene 12 - The Engine Room", char: "Grace", text: "Really? That was an option? The stairs? You made me get in the lift, like I was a bag of potatoes!" },
       { scene: "Scene 12 - The Engine Room", char: "Deckhand 1", type: "song", title: "I'm Gonna Be (500 Miles)", text: "[DH1] When I wake up, well, I know I'm gonna be / I'm gonna be the one who wakes up next to you / When I go out, yeah, I know I'm gonna be / I'm gonna be the one who goes along with you // [DH3] If I've money, well, I know I'm gonna be / I'm gonna be the one with money next to you / And if I haver, yeah, I know I'm gonna be / I'm gonna be the one who's haverin' to you // [ALL] But I would walk five hundred miles / And I would walk five hundred more / Just to be the one who walked a thousand / Miles to fall down at your door // [DH1] When I'm workin, yes, I know I'm gonna be / I'm gonna be the one who's workin' hard for you // [ALL] But I would walk five hundred miles / And I would walk five hundred more / Just to be the one who walked a thousand / Miles to fall down at your door // Da-da da da, da-da da da / Da-da dum diddy dum diddy dum diddy da da da" },
       { scene: "Scene 12 - The Engine Room", char: "Eddie", text: "Here. This way." },
+      { scene: "Scene 12 - The Engine Room", char: "Jeremiah", type: "walkon", text: "Present in engine room (no lines)" },
 
       // Scene 13
+      { scene: "Scene 13 - Grace's Cabin", char: "Jeremiah", type: "walkon", text: "Sleeping in bed (no lines)" },
       { scene: "Scene 13 - Grace's Cabin", char: "Grace", text: "This whole plot to steal the silver–is there a plot, or is it simply your plot?" },
       { scene: "Scene 13 - Grace's Cabin", char: "Peyton", text: "That's quite the accusation." },
       { scene: "Scene 13 - Grace's Cabin", char: "Grace", text: "Do you blame me? First, I find out that you stole Father's wallet." },
@@ -1327,6 +1334,20 @@ function renderPractice() {
         const col = charColorMap[line.char];
         const isCueLine = !startsScene && sceneLineIdx === cueLineIdx && line.char !== selectedChar;
 
+        // Walk-on block
+        if (line.type === 'walkon') {
+          const isMyChar = line.char === selectedChar;
+          if (isMyChar) {
+            html += `
+              <div class="walkon-block">
+                <span class="walkon-label">Walk-on</span>
+                <span class="walkon-text">${line.text}</span>
+              </div>`;
+          }
+          // Don't show other characters' walk-on notes
+          return;
+        }
+
         // Song block — always visible, styled differently
         if (line.type === 'song') {
           const isMyChar = line.char === selectedChar;
@@ -1395,7 +1416,7 @@ function toggleLine(i) {
 // ── Update progress ──
 function updateProgress() {
   const myIdxs = parsedLines
-    .map((l, i) => (l.char === selectedChar && l.type !== 'song') ? i : -1)
+    .map((l, i) => (l.char === selectedChar && l.type !== 'song' && l.type !== 'walkon') ? i : -1)
     .filter(x => x >= 0);
   const done = myIdxs.filter(i => revealed[i]).length;
   const pct = myIdxs.length ? Math.round(done / myIdxs.length * 100) : 0;
@@ -1405,11 +1426,11 @@ function updateProgress() {
 }
 
 function revealAll() {
-  parsedLines.forEach((l, i) => { if (l.char === selectedChar && l.type !== 'song') revealed[i] = true; });
+  parsedLines.forEach((l, i) => { if (l.char === selectedChar && l.type !== 'song' && l.type !== 'walkon') revealed[i] = true; });
   renderPractice();
 }
 function hideAll() {
-  parsedLines.forEach((l, i) => { if (l.char === selectedChar && l.type !== 'song') revealed[i] = false; });
+  parsedLines.forEach((l, i) => { if (l.char === selectedChar && l.type !== 'song' && l.type !== 'walkon') revealed[i] = false; });
   renderPractice();
 }
 function resetPractice() {

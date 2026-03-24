@@ -1596,8 +1596,13 @@ function renderPractice() {
   let html = '';
 
   allScenes.forEach((scene, sceneIdx) => {
-    // Skip scenes not selected by user
-    if (!selectedScenes.includes(scene)) return;
+    // Skip scenes not selected by user — but always show if char has a line here
+    const charHasLineHere = myScenes.has(scene);
+    if (!selectedScenes.includes(scene) && !charHasLineHere) return;
+    if (!selectedScenes.includes(scene) && charHasLineHere) {
+      // Auto-add to selectedScenes so it persists
+      selectedScenes.push(scene);
+    }
     const sceneLines = parsedLines.filter(l => l.scene === scene);
     const inThisScene = myScenes.has(scene);
 

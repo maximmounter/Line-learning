@@ -754,3 +754,78 @@ code {
   color: #1a1a1a;
   line-height: 1.4;
 }
+
+/* ── Inline insert buttons ── */
+.insert-btn-row {
+  text-align: center;
+  height: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+  margin: -2px 0;
+}
+
+.script-display-wrapper:hover .insert-btn-row,
+#script-display .insert-btn-row:hover,
+#script-display .cue-line:hover + .insert-btn-row,
+.insert-btn-row:focus-within {
+  opacity: 1;
+}
+
+.insert-btn {
+  background: #fff;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  border-radius: 99px;
+  font-size: 11px;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  top: -6px;
+}
+
+.insert-btn:active { background: #dbeafe; }
+
+/* Always show insert buttons on touch devices */
+@media (hover: none) {
+  .insert-btn-row { opacity: 1; height: auto; margin: 4px 0; }
+}
+
+/* ── Edit button on my lines ── */
+.line-edit-btn {
+  background: none;
+  border: none;
+  color: #93c5fd;
+  font-size: 14px;
+  padding: 4px 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.line-edit-btn:active { color: #2563eb; }
+
+/* ── Fix context display ── */
+.fix-context-line {
+  background: #f5f4f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.fix-context-char {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.fix-context-text {
+  color: #1a1a1a;
+}

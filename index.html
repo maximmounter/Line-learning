@@ -81,81 +81,52 @@
     <div id="fix-overlay" style="display:none;">
       <div class="add-show-box">
         <div class="add-show-header">
-          <span style="font-weight:600; font-size:16px;">✎ Fix script</span>
+          <span style="font-weight:600; font-size:16px;" id="fix-panel-title">✎ Fix script</span>
           <button class="scene-menu-close" onclick="closeFixPanel()">✕</button>
         </div>
         <div class="add-show-body">
 
-          <!-- Mode buttons -->
-          <div class="fix-tabs">
-            <button class="fix-tab active" id="tab-add-line" onclick="switchFixTab('add-line')">Add line</button>
-            <button class="fix-tab" id="tab-edit-line" onclick="switchFixTab('edit-line')">Edit / remove line</button>
-            <button class="fix-tab" id="tab-add-walkon" onclick="switchFixTab('add-walkon')">Add walk-on</button>
-            <button class="fix-tab" id="tab-edit-walkon" onclick="switchFixTab('edit-walkon')">Edit / remove walk-on</button>
-          </div>
-
-          <!-- 1. ADD LINE -->
-          <div id="fix-panel-add-line">
-            <p class="hint-text" style="margin-bottom:12px;">Add a new spoken line to a scene.</p>
-            <div class="section-label" style="margin-bottom:4px;">Scene</div>
-            <select id="fix-add-scene" onchange="populateAfterLine('fix-add-after')" style="margin-bottom:10px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
-            <div class="section-label" style="margin-bottom:4px;">Character</div>
-            <input type="text" id="fix-add-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
+          <!-- EDIT LINE (opened by tapping a line) -->
+          <div id="fix-panel-edit-line">
+            <div class="fix-context-line" id="fix-context-display"></div>
+            <div class="section-label" style="margin-bottom:4px; margin-top:14px;">Character</div>
+            <input type="text" id="fix-edit-char" style="margin-bottom:10px;" />
             <div class="section-label" style="margin-bottom:4px;">Line text</div>
-            <textarea id="fix-add-text" rows="4" placeholder="The dialogue..." oninput="lineAutocomplete('fix-add-text','fix-add-scene','fix-add-suggestions')" style="margin-bottom:4px;"></textarea>
-            <div id="fix-add-suggestions" class="line-suggestions"></div>
-            <div class="section-label" style="margin-bottom:4px; margin-top:8px;">Insert after</div>
-            <select id="fix-add-after" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
-            <div id="fix-add-error" class="warning-msg">Please fill in all fields.</div>
-            <button class="btn btn-primary" style="width:100%;" onclick="saveFixAdd('line')">Add line</button>
+            <textarea id="fix-edit-text" rows="4" style="margin-bottom:10px;"></textarea>
+            <div class="section-label" style="margin-bottom:4px;">Type</div>
+            <select id="fix-edit-type" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;">
+              <option value="">Normal line</option>
+              <option value="song">Song</option>
+              <option value="walkon">Walk-on</option>
+            </select>
+            <div id="fix-edit-error" class="warning-msg">Please fill in character and line text.</div>
+            <button class="btn btn-primary" style="width:100%; margin-bottom:10px;" onclick="saveFixEdit()">Save changes</button>
+            <button class="btn" style="width:100%; color:#dc2626; border-color:#dc2626;" onclick="deleteFixLine()">🗑 Remove this line</button>
           </div>
 
-          <!-- 2. EDIT / REMOVE LINE -->
-          <div id="fix-panel-edit-line" style="display:none;">
-            <p class="hint-text" style="margin-bottom:12px;">Search for a spoken line to edit or remove.</p>
-            <input type="text" id="fix-search-line" placeholder="Type part of the line or character name..." oninput="fixSearch('line')" />
-            <div id="fix-search-line-results" style="margin-top:10px;"></div>
-            <div id="fix-edit-line-form" style="display:none; margin-top:16px;">
+          <!-- ADD LINE / WALK-ON (opened by tapping + between lines, or the add buttons) -->
+          <div id="fix-panel-add" style="display:none;">
+            <div class="fix-context-line" id="fix-add-context-display"></div>
+            <div class="fix-tabs" style="margin-top:14px;">
+              <button class="fix-tab active" id="fix-add-tab-line" onclick="switchAddTab('line')">Add line</button>
+              <button class="fix-tab" id="fix-add-tab-walkon" onclick="switchAddTab('walkon')">Add walk-on</button>
+            </div>
+            <div id="fix-add-line-form">
               <div class="section-label" style="margin-bottom:4px;">Character</div>
-              <input type="text" id="fix-edit-char" style="margin-bottom:10px;" />
+              <input type="text" id="fix-add-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
               <div class="section-label" style="margin-bottom:4px;">Line text</div>
-              <textarea id="fix-edit-text" rows="4" style="margin-bottom:14px;"></textarea>
-              <div id="fix-edit-error" class="warning-msg">Please fill in character and line text.</div>
-              <button class="btn btn-primary" style="width:100%; margin-bottom:10px;" onclick="saveFixEdit()">Save changes</button>
-              <button class="btn" style="width:100%; color:#dc2626; border-color:#dc2626;" onclick="deleteFixLine()">🗑 Remove this line</button>
+              <textarea id="fix-add-text" rows="4" placeholder="The dialogue..." oninput="lineAutocomplete('fix-add-text','fix-add-scene-hidden','fix-add-suggestions')" style="margin-bottom:4px;"></textarea>
+              <div id="fix-add-suggestions" class="line-suggestions"></div>
+              <input type="hidden" id="fix-add-scene-hidden" />
             </div>
-          </div>
-
-          <!-- 3. ADD WALK-ON -->
-          <div id="fix-panel-add-walkon" style="display:none;">
-            <p class="hint-text" style="margin-bottom:12px;">Add a walk-on for a character who is present but has no spoken lines.</p>
-            <div class="section-label" style="margin-bottom:4px;">Scene</div>
-            <select id="fix-walkon-scene" onchange="populateAfterLine('fix-walkon-after')" style="margin-bottom:10px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
-            <div class="section-label" style="margin-bottom:4px;">Character</div>
-            <input type="text" id="fix-walkon-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
-            <div class="section-label" style="margin-bottom:4px;">Stage direction</div>
-            <textarea id="fix-walkon-text" rows="3" placeholder="e.g. Enters and hangs coat on rack (no lines)" oninput="lineAutocomplete('fix-walkon-text','fix-walkon-scene','fix-walkon-suggestions')" style="margin-bottom:4px;"></textarea>
-            <div id="fix-walkon-suggestions" class="line-suggestions"></div>
-            <div class="section-label" style="margin-bottom:4px; margin-top:8px;">Insert after</div>
-            <select id="fix-walkon-after" style="margin-bottom:14px; width:100%; font-size:16px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fafaf8;"></select>
-            <div id="fix-walkon-error" class="warning-msg">Please fill in all fields.</div>
-            <button class="btn btn-primary" style="width:100%;" onclick="saveFixAdd('walkon')">Add walk-on</button>
-          </div>
-
-          <!-- 4. EDIT / REMOVE WALK-ON -->
-          <div id="fix-panel-edit-walkon" style="display:none;">
-            <p class="hint-text" style="margin-bottom:12px;">Search for a walk-on to edit or remove.</p>
-            <input type="text" id="fix-search-walkon" placeholder="Type character name or description..." oninput="fixSearch('walkon')" />
-            <div id="fix-search-walkon-results" style="margin-top:10px;"></div>
-            <div id="fix-edit-walkon-form" style="display:none; margin-top:16px;">
+            <div id="fix-add-walkon-form" style="display:none;">
               <div class="section-label" style="margin-bottom:4px;">Character</div>
-              <input type="text" id="fix-edit-walkon-char" style="margin-bottom:10px;" />
+              <input type="text" id="fix-walkon-char" placeholder="e.g. Jeremiah" style="margin-bottom:10px;" />
               <div class="section-label" style="margin-bottom:4px;">Stage direction</div>
-              <textarea id="fix-edit-walkon-text" rows="3" style="margin-bottom:14px;"></textarea>
-              <div id="fix-edit-walkon-error" class="warning-msg">Please fill in all fields.</div>
-              <button class="btn btn-primary" style="width:100%; margin-bottom:10px;" onclick="saveFixEditWalkon()">Save changes</button>
-              <button class="btn" style="width:100%; color:#dc2626; border-color:#dc2626;" onclick="deleteFixLine()">🗑 Remove this walk-on</button>
+              <textarea id="fix-walkon-text" rows="3" placeholder="e.g. Enters and hangs coat on rack (no lines)" style="margin-bottom:10px;"></textarea>
             </div>
+            <div id="fix-add-error" class="warning-msg">Please fill in all fields.</div>
+            <button class="btn btn-primary" style="width:100%; margin-top:4px;" onclick="saveFixAddInline()">Add</button>
           </div>
 
         </div>

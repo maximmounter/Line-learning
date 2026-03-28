@@ -95,6 +95,7 @@ const SHOWS = {
       { scene: "Scene 2 - The Train", char: "Train Passenger", text: "Heading home to Ireland. Haven't seen my family in four years. I won't recognize my little nieces and nephews. There's no stopping time. Probably sprouted up faster than a mushroom after a rainfall." },
       { scene: "Scene 2 - The Train", char: "Jeremiah", text: "They do grow up fast." },
       { scene: "Scene 2 - The Train", char: "Train Passenger", text: "That they do. There's no slowing time. It's always pushing ahead." },
+      { scene: "Scene 2 - The Train", char: "Train Passenger", text: "Diary? Best keep that safe, Miss. Don't want those secrets getting out, right?" },
       { scene: "Scene 2 - The Train", char: "Jeremiah", text: "Thank you." },
       { scene: "Scene 2 - The Train", char: "Grace", text: "Yes, thank you." },
       { scene: "Scene 2 - The Train", char: "Train Passenger", text: "Better not forget this lovely lady too. Is that your mother? That's a lovely purple dress." },
@@ -229,8 +230,8 @@ const SHOWS = {
       // Scene 5
       { scene: "Scene 5 - Grace's Room", char: "Peyton", text: "And, here is your room. If you get lost, just remember you pass straight through the music room before you get to the hall to your room." },
       { scene: "Scene 5 - Grace's Room", char: "Jeremiah", text: "Grace, maybe you can favour us with a selection on the piano later." },
-      { scene: "Scene 5 - Grace's Room", char: "Peyton", text: "I'm alright. Don't worry about me. Who put that chair there, anyway?" },
       { scene: "Scene 5 - Grace's Room", char: "Jeremiah", text: "Grace, this will do just fine. Look there's even a window with a view." },
+      { scene: "Scene 5 - Grace's Room", char: "Peyton", text: "I'm alright. Don't worry about me. Who put that chair there, anyway?" },
       { scene: "Scene 5 - Grace's Room", char: "Peyton", text: "I guess I'll be leaving you two then." },
       { scene: "Scene 5 - Grace's Room", char: "Jeremiah", text: "All right. Thank you. One moment. Allow me to…" },
       { scene: "Scene 5 - Grace's Room", char: "Peyton", text: "Is there a problem, sir?" },
@@ -262,7 +263,8 @@ const SHOWS = {
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "What crime?" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "I better spare you the details. Anyway, he and his new lady friend were on the run from the law and they secured passage on board a Canadian Steamship called the Montrose, which was Captain Kendall's former ship." },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "What did the Captain do?" },
-      { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "A series of wireless messages were sent back and forth to Scotland Yard. A Scotland Yard detective, posing as the ship's pilot, came on board at Father Point. He arrested Crippen. The world followed the drama in the newspapers. Captain Kendall became an instant hero. He even kept an eye on Crippen during the sailing by playing cards with him." },
+      { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "A series of wireless messages were sent back and forth to Scotland Yard. A Scotland Yard detective, posing as the ship's pilot, came on board at Father Point. He arrested Crippen. The world followed the drama in the newspapers. Captain Kendall became an instant hero. He even kept an eye on Crippen during the sailing by playing cards with him to keep Crippen away from the newspapers, so that his hand wouldn't be tipped and the operation wouldn't be ruined." },
+      { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "The whole thing went according to plan, however, when Crippen was leaving the ship in handcuffs, he looked at Captain Kendall and said, 'You will suffer for this treachery, sir.'" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "Oh my. What a story. And the clever crewman who first alerted Captain Kendall?" },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Peyton", text: "My father. He immediately promoted him from the lower decks on the Empress, to Chief Steward." },
       { scene: "Scene 6 - Lower Promenade Deck C", char: "Grace", text: "So, let me see if I've got this straight. Crippen was pretending to be a doctor, and went on-the-run with a woman and they pretended to be father and son, all the while, Captain Kendall pretended to entertain the doctor. And the Scotland Yard detective pretended to be the ship's pilot. And now, you're in disguise, pretending to be some sort of free-to-roam-the-ship steward." },
@@ -373,7 +375,6 @@ const SHOWS = {
       { scene: "Scene 7 - The First Class Dining Room", char: "Peyton", text: "Grace. Sorry about that. Also, sorry about earlier…when I left you on deck. I had to leave so…abruptly. What's so interesting there…in that book?" },
       { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "It's a mystery. I think I figured out who did it." },
       { scene: "Scene 7 - The First Class Dining Room", char: "Peyton", text: "Really. Let me hear a bit." },
-      { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "The most successful of crimes, spoke Mr. Kimberly to the others, are those that are committed with partial truths. That way, the culprit may capitalize on the truth, in order to mask the deception." },
       { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "\"The most successful of crimes,\" spoke Mr. Kimberly to the others, \"are those that are committed with partial truths. That way, the culprit may capitalize on the truth, in order to mask the deception.\"" },
       { scene: "Scene 7 - The First Class Dining Room", char: "Peyton", text: "I see. I'm afraid I'm not much of a reader, unless of course it's a menu. I'm starved. Do you read very often?" },
       { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "All the time. It calms me." },
@@ -402,7 +403,6 @@ const SHOWS = {
       { scene: "Scene 7 - The First Class Dining Room", char: "Peyton", text: "There'll be lots of time for that later. Right now, Father and I have to make a bit of money. He promised Mother that we'd be done with this life in a few years. Although, as Mother keeps reminding him–\"time is the coin of your life. Be careful lest you let others spend it for you.\"" },
       { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "Sounds like your mother is wise. My mother gave Father similar advice." },
       { scene: "Scene 7 - The First Class Dining Room", char: "Peyton", text: "Oh, what's that?" },
-      { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "Whenever he would run off to quickly try and fix a situation, she would often say, Jeremiah, sometimes the best action is no action at all." },
       { scene: "Scene 7 - The First Class Dining Room", char: "Grace", text: "Whenever he would run off to quickly try and fix a situation, she would often say, \"Jeremiah, sometimes the best action is no action at all.\"" },
       { scene: "Scene 7 - The First Class Dining Room", char: "Peyton", text: "Interesting. I guess my Father is a man of action too. But he's really trying, my Father. He's a good man." },
       { scene: "Scene 7 - The First Class Dining Room", char: "Irving", text: "I mean, really dear, we should do a Titanic production. There's so much there that we could explore in the theatre." },
@@ -490,7 +490,7 @@ const SHOWS = {
       { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Peyton", text: "Oh, she's a passenger. But, it's ok. Her father asked me to entertain her a bit." },
       { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Dr. Grant", text: "I see." },
       { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Grace", text: "Dr. Grant. This must be an interesting job you have here on the ship. What made you decide on it?" },
-      { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Dr. Grant", text: "It is interesting at times. I heard about experiences on the Empress from a friend of a friend. It was from a doctor named John McCrae, out of Guelph. He and I both studied at McGill for medicine." },
+      { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Dr. Grant", text: "It is interesting at times. I heard about experiences on the Empress from a friend of a friend. It was from a doctor named John McCrae, out of Guelph. He and I both studied at McGill for medicine and we both ended up at Montreal General Hospital, albeit, I worked there a few years later than he did. In any event, I had heard that this John McCrae served in the South African war and then decided to become a physician. When travelling to England to perform his medical examinations, he travelled on the Empress–he spoke very highly of it." },
       { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Peyton", text: "Uh, doctor. That's very fascinating and all, but…" },
       { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Dr. Grant", text: "Right. Now, you've had trouble sleeping?" },
       { scene: "Scene 10 - Dr. Grant's Infirmary", char: "Eddie", text: "Right. Haven't slept in years." },
@@ -519,6 +519,8 @@ const SHOWS = {
       { scene: "Scene 11 - The Kitchen Elevator", char: "Eddie", text: "It's all right, Miss, see. It's just a blanket over top. The lift is used all the time." },
       { scene: "Scene 11 - The Kitchen Elevator", char: "Grace", text: "What is the purpose of this?" },
       { scene: "Scene 11 - The Kitchen Elevator", char: "Peyton", text: "Grace, everything I told you about your father's silver. All your questions. I can answer once we are beyond this door. You have to trust me, just a little further. Please." },
+      { scene: "Scene 11 - The Kitchen Elevator", char: "Peyton", text: "Thanks for trusting me, Grace." },
+      { scene: "Scene 11 - The Kitchen Elevator", char: "Eddie", text: "Alright, let's get you in here. Let's go down. You stay hidden, just in case." },
       { scene: "Scene 11 - The Kitchen Elevator", char: "Grace", text: "If anything goes wrong, I'm going to hurt you." },
       { scene: "Scene 11 - The Kitchen Elevator", char: "Eddie", text: "What did she say? I didn't catch that." },
       { scene: "Scene 11 - The Kitchen Elevator", char: "Peyton", text: "I don't think you want to know." },
@@ -610,7 +612,8 @@ const SHOWS = {
       { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Grace", text: "What makes you think that?" },
       { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Mr. Steele", text: "Just a hunch. I know it's none of my business, but I can't help but wonder if there is something the matter. Is it about your Father rushing you off to England?" },
       { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Grace", text: "How do you know of such things?" },
-      { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Mr. Steele", text: "I overheard your father speaking about the difficult transition as he arrived for dinner tonight. I surmised that is why you must be so bothered. It must be a difficult thing, really. Good evening, Grace." },
+      { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Mr. Steele", text: "I overheard your father speaking about the difficult transition as he arrived for dinner tonight. I surmised that is why you must be so bothered. It must be a difficult thing, really. You seem to be quite…well, it's really none of my business. I'm sorry." },
+      { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Mr. Steele", text: "Good evening, Grace." },
       { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Grace", text: "Wait, Mr. Steele. There's…there's something I need to tell you. It's about Peyton Thomas. She's committed a terrible mistake, and she desperately needs our help." },
       { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Mr. Steele", text: "What has Miss Thomas done this time?" },
       { scene: "Scene 14 - Grace's Cabin / Hallway", char: "Grace", text: "She has gotten mixed up with a bad lot. They have stolen something valuable. Something very valuable." },
@@ -626,6 +629,8 @@ const SHOWS = {
 
       // Scene 15
       { scene: "Scene 15 - Engine Room", char: "Crall", text: "Get the rest of these mailbags in through the door there and load the silver." },
+      { scene: "Scene 15 - Engine Room", char: "Deckhand 1", type: "walkon", text: "Engine worker — loading silver into mail bags (no lines)" },
+      { scene: "Scene 15 - Engine Room", char: "Deckhand 3", type: "walkon", text: "Engine worker — loading silver into mail bags (no lines)" },
       { scene: "Scene 15 - Engine Room", char: "Peyton", text: "You seem to have missed one." },
       { scene: "Scene 15 - Engine Room", char: "Crall", text: "That's your share. See. I'm a man of my word." },
       { scene: "Scene 15 - Engine Room", char: "Peyton", text: "You're a real humanitarian." },
@@ -731,6 +736,7 @@ const SHOWS = {
       { scene: "Scene 18 - The Storstad", char: "Mrs. Anderson", text: "We have many injured inside. I'll lead you to them." },
       { scene: "Scene 18 - The Storstad", char: "Dr. Grant", text: "I'll be fine. It's my shoulder. I almost didn't make it out. My cabin porthole became my ceiling. I had to climb up to it. I got stuck in the porthole and a few kind people standing on the side hull pulled me through. Now, I've got to help others." },
       { scene: "Scene 18 - The Storstad", char: "Mrs. Anderson", text: "Sounds terrible. Right this way, Doctor." },
+      { scene: "Scene 18 - The Storstad", char: "Sofia", type: "walkon", text: "Appears behind Grace in her vision during Already Home, wearing purple dress, earrings, hair up (no spoken lines)" },
       { scene: "Scene 18 - The Storstad", char: "Grace", type: "song", title: "Already Home", text: "[GRACE] You say love is what you put into it / You say that I'm losing my will / Don't you know that you're all that I think about? / You make up a half of the whole // You say that it's hard to commit to it / You say that it's hard standing still / Don't you know that I spend all my nights / Counting backwards the days 'til I'm home? // If only New York wasn't so far away / I promise the city won't get in our way / When I'm scared and alone / Just know that I'm already home // [SOFIA] I say that we're right in the heart of it / A love only we understand / I will bend every light in this city / And make sure they're shining on you // If only New York wasn't so far away / I promise the city won't get in our way / When you're scared and alone / Just know that I'm already home // [GRACE] When life takes its own course / Sometimes we just don't get to choose // [GRACE/SOFIA] I'd rather be there next to you / Promise you'll wait for me, wait for me / Wait 'til I'm home / All I have is this feeling inside of me / The only thing I've ever known // If only New York wasn't so far away / I will be there every step of the way / And when you're scared and alone / Just know that I'm already home // Just know that I'm already home" },
 
       // Scene 19
@@ -784,10 +790,8 @@ const SHOWS = {
       { scene: "Scene 20 - CPR Office", char: "Jeremiah", text: "Steward Thomas, isn't it? So good to see you. And your father?" },
       { scene: "Scene 20 - CPR Office", char: "Thomas", text: "Right here. I'm pleased to see you both. What an awful tragedy. I'm sure the casualties will be over a thousand." },
       { scene: "Scene 20 - CPR Office", char: "Jeremiah", text: "Terrible. I understand from the initial reports that there was a misunderstanding of all the signals. Who should maneuver which way. It seems Captain Kendall called for \"all stop\" and the Storstad headed for the Empress' last-seen position before the fog." },
-      { scene: "Scene 20 - CPR Office", char: "Jeremiah", text: "I understand from the initial reports that there was a misunderstanding of all the signals. Who should maneuver which way. It seems Captain Kendall called for all stop and the Storstad headed for the Empress last-seen position before the fog." },
       { scene: "Scene 20 - CPR Office", char: "Thomas", text: "It is still unbelievable. Fourteen minutes–she sank in only fourteen minutes. In essence, if both Captains hadn't acted at all–hadn't adjusted their headings, the whole event never would have happened. And what of you both, now?" },
       { scene: "Scene 20 - CPR Office", char: "Jeremiah", text: "Well, like Grace's mother would say, \"sometimes the best course of action is no action at all.\" This is our home. At least, for the foreseeable future. And you?" },
-      { scene: "Scene 20 - CPR Office", char: "Jeremiah", text: "Well, like Grace's mother would say, sometimes the best course of action is no action at all. This is our home. At least, for the foreseeable future. And you?" },
       { scene: "Scene 20 - CPR Office", char: "Thomas", text: "We just acquired tickets for the train to New York. There, we'll board the White Star's ship, the Alsatian and venture back to England." },
       { scene: "Scene 20 - CPR Office", char: "Jeremiah", text: "Well, I shall wish you both the best of success." },
       { scene: "Scene 20 - CPR Office", char: "Thomas", text: "Thank you. Perhaps, we should give them a minute. I have a feeling they made somewhat of a connection in a short amount of time on the Empress." },
@@ -867,13 +871,15 @@ const CUE_LINES = {
       "Scene 2": "I don't feel strong enough."
     },
     "Deckhand 1": {
-      "Scene 3": null
+      "Scene 3": null,
+      "Scene 15": null
     },
     "Deckhand 2": {
       "Scene 3": null
     },
     "Deckhand 3": {
-      "Scene 3": null
+      "Scene 3": null,
+      "Scene 15": null
     },
     "Deckhand 4": {
       "Scene 3": null
@@ -1173,37 +1179,96 @@ function populateAfterLine(selectId) {
   }
 }
 
+
+// ── Tap a line to edit it ──
+function openEditPanel(i) {
+  fixEditIndex = i;
+  const line = parsedLines[i];
+  document.getElementById('fix-panel-title').textContent = '✎ Edit line';
+  document.getElementById('fix-context-display').innerHTML =
+    '<span class="fix-context-char">' + line.char + '</span>' +
+    '<span class="fix-context-text">' + line.text.substring(0, 80) + (line.text.length > 80 ? '…' : '') + '</span>';
+  document.getElementById('fix-edit-char').value = line.char;
+  document.getElementById('fix-edit-text').value = line.text;
+  document.getElementById('fix-edit-type').value = line.type || '';
+  document.getElementById('fix-edit-error').style.display = 'none';
+  document.getElementById('fix-panel-edit-line').style.display = 'block';
+  document.getElementById('fix-panel-add').style.display = 'none';
+  document.getElementById('fix-overlay').style.display = 'flex';
+}
+
+// ── Tap + to insert after a line ──
+function openInsertPanel(afterIdx, scene) {
+  fixEditIndex = afterIdx;
+  const afterLine = parsedLines[afterIdx];
+  document.getElementById('fix-panel-title').textContent = '+ Insert line';
+  document.getElementById('fix-add-context-display').innerHTML =
+    '<span style="font-size:11px;color:#888;">Inserting after:</span><br>' +
+    '<span class="fix-context-char">' + afterLine.char + '</span>' +
+    '<span class="fix-context-text">' + afterLine.text.substring(0, 70) + (afterLine.text.length > 70 ? '…' : '') + '</span>';
+  document.getElementById('fix-add-scene-hidden').value = scene;
+  document.getElementById('fix-add-char').value = '';
+  document.getElementById('fix-add-text').value = '';
+  document.getElementById('fix-walkon-char').value = '';
+  document.getElementById('fix-walkon-text').value = '';
+  document.getElementById('fix-add-suggestions').innerHTML = '';
+  document.getElementById('fix-add-error').style.display = 'none';
+  switchAddTab('line');
+  document.getElementById('fix-panel-edit-line').style.display = 'none';
+  document.getElementById('fix-panel-add').style.display = 'block';
+  document.getElementById('fix-overlay').style.display = 'flex';
+}
+
+function switchAddTab(tab) {
+  document.getElementById('fix-add-line-form').style.display = tab === 'line' ? 'block' : 'none';
+  document.getElementById('fix-add-walkon-form').style.display = tab === 'walkon' ? 'block' : 'none';
+  document.getElementById('fix-add-tab-line').classList.toggle('active', tab === 'line');
+  document.getElementById('fix-add-tab-walkon').classList.toggle('active', tab === 'walkon');
+}
+
+function saveFixAddInline() {
+  const afterIdx = fixEditIndex;
+  const scene = document.getElementById('fix-add-scene-hidden').value;
+  const isWalkon = document.getElementById('fix-add-walkon-form').style.display !== 'none';
+  const errEl = document.getElementById('fix-add-error');
+
+  if (isWalkon) {
+    const char = document.getElementById('fix-walkon-char').value.trim();
+    const text = document.getElementById('fix-walkon-text').value.trim();
+    if (!char || !text) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+    insertLineAfter({ scene, char, text, type: 'walkon' }, afterIdx);
+  } else {
+    const char = document.getElementById('fix-add-char').value.trim();
+    const text = document.getElementById('fix-add-text').value.trim();
+    if (!char || !text) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+    insertLineAfter({ scene, char, text }, afterIdx);
+  }
+
+  parsedLines.forEach(l => {
+    if (l.char === selectedChar && !selectedScenes.includes(l.scene)) {
+      selectedScenes.push(l.scene);
+    }
+  });
+
+  saveCurrentShowEdits();
+  closeFixPanel();
+  renderPractice();
+  buildSceneMenu();
+}
+
 function openFixPanel() {
-  // Populate scene dropdowns
-  const allScenes = [];
-  parsedLines.forEach(l => { if (!allScenes.includes(l.scene)) allScenes.push(l.scene); });
-  const sceneOptions = allScenes.map(s => '<option value="' + s + '">' + s + '</option>').join('');
-  document.getElementById('fix-add-scene').innerHTML = sceneOptions;
-  document.getElementById('fix-walkon-scene').innerHTML = sceneOptions;
-  // Populate after-line dropdowns for the default scene
-  populateAfterLine('fix-add-after');
-  populateAfterLine('fix-walkon-after');
-
-  // Reset state
-  ['fix-search-line','fix-search-walkon'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
-  });
-  ['fix-search-line-results','fix-search-walkon-results'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = '';
-  });
-  ['fix-edit-line-form','fix-edit-walkon-form'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  ['fix-edit-error','fix-add-error','fix-walkon-error','fix-edit-walkon-error'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  switchFixTab('add-line');
+  // Called from the Fix button — just open with a prompt to tap a line
+  document.getElementById('fix-panel-title').textContent = '✎ Fix script';
+  document.getElementById('fix-panel-edit-line').style.display = 'block';
+  document.getElementById('fix-panel-add').style.display = 'none';
+  document.getElementById('fix-context-display').innerHTML = '<span style="color:#888; font-size:13px;">Tap any line in the script to edit it, or tap <strong>+ insert here</strong> between lines to add a new one.</span>';
+  document.getElementById('fix-edit-char').value = '';
+  document.getElementById('fix-edit-text').value = '';
+  document.getElementById('fix-edit-type').value = '';
+  document.getElementById('fix-edit-error').style.display = 'none';
   fixEditIndex = -1;
-
   document.getElementById('fix-overlay').style.display = 'flex';
 }
 
@@ -1684,15 +1749,18 @@ function renderPractice() {
         } else if (line.char === selectedChar) {
           const isRevealed = revealed[i];
           html += `
-            <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}" onclick="toggleLine(${i})">
-              <span>
+            <div class="insert-btn-row"><button class="insert-btn" onclick="openInsertPanel(${i}, '${line.scene.replace(/'/g,"\\'")}')">+ insert here</button></div>
+            <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}">
+              <span onclick="toggleLine(${i})" style="flex:1;">
                 <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
               </span>
-              ${!isRevealed ? '<span class="reveal-hint">tap to reveal</span>' : ''}
+              ${!isRevealed ? '<span class="reveal-hint" onclick="toggleLine(${i})">tap to reveal</span>' : ''}
+              <button class="line-edit-btn" onclick="openEditPanel(${i})">✎</button>
             </div>`;
         } else {
           html += `
-            <div class="cue-line${isCueLine ? ' is-cue' : ''}">
+            <div class="insert-btn-row"><button class="insert-btn" onclick="openInsertPanel(${i}, '${line.scene.replace(/'/g,"\\'")}')">+ insert here</button></div>
+            <div class="cue-line${isCueLine ? ' is-cue' : ''}" onclick="openEditPanel(${i})">
               ${isCueLine ? '<span class="cue-line-label">your cue</span>' : ''}
               <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
             </div>`;

@@ -1749,18 +1749,15 @@ function renderPractice() {
         } else if (line.char === selectedChar) {
           const isRevealed = revealed[i];
           html += `
-            <div class="insert-btn-row"><button class="insert-btn" onclick="openInsertPanel(${i}, '${line.scene.replace(/'/g,"\\'")}')">+ insert here</button></div>
-            <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}">
-              <span onclick="toggleLine(${i})" style="flex:1;">
+            <div class="my-line-hidden ${isRevealed ? 'revealed' : ''}" id="line-${i}" onclick="toggleLine(${i})">
+              <span>
                 <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
               </span>
-              ${!isRevealed ? '<span class="reveal-hint" onclick="toggleLine(${i})">tap to reveal</span>' : ''}
-              <button class="line-edit-btn" onclick="openEditPanel(${i})">✎</button>
+              ${!isRevealed ? '<span class="reveal-hint">tap to reveal</span>' : ''}
             </div>`;
         } else {
           html += `
-            <div class="insert-btn-row"><button class="insert-btn" onclick="openInsertPanel(${i}, '${line.scene.replace(/'/g,"\\'")}')">+ insert here</button></div>
-            <div class="cue-line${isCueLine ? ' is-cue' : ''}" onclick="openEditPanel(${i})">
+            <div class="cue-line${isCueLine ? ' is-cue' : ''}">
               ${isCueLine ? '<span class="cue-line-label">your cue</span>' : ''}
               <span class="char-badge" style="background:${col.bg}; color:${col.text};">${line.char}</span>${line.text}
             </div>`;
